@@ -1,0 +1,357 @@
+md5,caminho,motivo_rejeicao,detalhe
+00000ec8a66b6bd2ef809b0443eeae41,arquivos_brutos\lmd_full\0\00000ec8a66b6bd2ef809b0443eeae41.mid,MUITO_CURTO,duracao=12.97s < 15.0s
+00057a6f0e39c3a4498b737a8c5e29fe,arquivos_brutos\lmd_full\0\00057a6f0e39c3a4498b737a8c5e29fe.mid,MUITO_CURTO,duracao=6.86s < 15.0s
+00096b3fe6714dd5fda0e4a39d798f9e,arquivos_brutos\lmd_full\0\00096b3fe6714dd5fda0e4a39d798f9e.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+000f05900eff8fc2a56cd961cff052dd,arquivos_brutos\lmd_full\0\000f05900eff8fc2a56cd961cff052dd.mid,MUITO_LONGO,duracao=621.63s > 600.0s
+0010ecc8ade3a8543e77324dd350d312,arquivos_brutos\lmd_full\0\0010ecc8ade3a8543e77324dd350d312.mid,MUITO_LONGO,duracao=719.70s > 600.0s
+001549d8bc6ba6dc62ade443cf01a51e,arquivos_brutos\lmd_full\0\001549d8bc6ba6dc62ade443cf01a51e.mid,MUITO_LONGO,duracao=1489.49s > 600.0s
+0025ddf013cfaacf9f92eda1e5b4e78f,arquivos_brutos\lmd_full\0\0025ddf013cfaacf9f92eda1e5b4e78f.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+002735e0b8fa85bd5fe2f75c24721d7a,arquivos_brutos\lmd_full\0\002735e0b8fa85bd5fe2f75c24721d7a.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+0028477d5868aabeb05c850a3b862ad5,arquivos_brutos\lmd_full\0\0028477d5868aabeb05c850a3b862ad5.mid,MUITO_CURTO,duracao=12.89s < 15.0s
+002ace212d83de8b4a88e40c6a807714,arquivos_brutos\lmd_full\0\002ace212d83de8b4a88e40c6a807714.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+002fe8398d07a7f33c2d13e9bcc1309e,arquivos_brutos\lmd_full\0\002fe8398d07a7f33c2d13e9bcc1309e.mid,CORROMPIDO,data byte must be in range 0..127
+003197a77e9e278ad7db130f5476aa93,arquivos_brutos\lmd_full\0\003197a77e9e278ad7db130f5476aa93.mid,MUITO_CURTO,duracao=14.46s < 15.0s
+0044de28abecfbe35a9e3c75068aaae3,arquivos_brutos\lmd_full\0\0044de28abecfbe35a9e3c75068aaae3.mid,MUITO_CURTO,duracao=10.00s < 15.0s
+00456d62c1bf942ec30de477a5fca25a,arquivos_brutos\lmd_full\0\00456d62c1bf942ec30de477a5fca25a.mid,MUITO_LONGO,duracao=1078.84s > 600.0s
+004a821b068a1f9c6177b91f40faeb83,arquivos_brutos\lmd_full\0\004a821b068a1f9c6177b91f40faeb83.mid,MUITO_CURTO,duracao=4.50s < 15.0s
+004ef81437fc84eee181a237715b78dd,arquivos_brutos\lmd_full\0\004ef81437fc84eee181a237715b78dd.mid,MUITO_CURTO,duracao=14.32s < 15.0s
+004fbfcd81e21d43ef4cb213b52996ab,arquivos_brutos\lmd_full\0\004fbfcd81e21d43ef4cb213b52996ab.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+00528212887c64888bb17a8e470fee67,arquivos_brutos\lmd_full\0\00528212887c64888bb17a8e470fee67.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+0058d1fdc215bb4c72fdb4c1ad57f6f2,arquivos_brutos\lmd_full\0\0058d1fdc215bb4c72fdb4c1ad57f6f2.mid,MUITO_LONGO,duracao=874.50s > 600.0s
+005eb0a16babe6315274b38c2ccdd967,arquivos_brutos\lmd_full\0\005eb0a16babe6315274b38c2ccdd967.mid,MUITO_CURTO,duracao=14.25s < 15.0s
+005ed798038238d8666457bc61ec5dd1,arquivos_brutos\lmd_full\0\005ed798038238d8666457bc61ec5dd1.mid,MUITO_CURTO,duracao=7.27s < 15.0s
+0060e255267852145367b6bab98295ee,arquivos_brutos\lmd_full\0\0060e255267852145367b6bab98295ee.mid,MUITO_CURTO,duracao=6.76s < 15.0s
+0064e4c4ede2aab0a56b30cf354b34d0,arquivos_brutos\lmd_full\0\0064e4c4ede2aab0a56b30cf354b34d0.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+0066143345314a9e98b0aa12798b7713,arquivos_brutos\lmd_full\0\0066143345314a9e98b0aa12798b7713.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+00767686a8978d6ab41a4411dfad5445,arquivos_brutos\lmd_full\0\00767686a8978d6ab41a4411dfad5445.mid,MUITO_LONGO,duracao=675.94s > 600.0s
+0078ac22a61218e346ab887d5a002eb0,arquivos_brutos\lmd_full\0\0078ac22a61218e346ab887d5a002eb0.mid,MUITO_CURTO,duracao=4.32s < 15.0s
+007bb864a01ae1a75b597e1a25f0fcef,arquivos_brutos\lmd_full\0\007bb864a01ae1a75b597e1a25f0fcef.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+007d001cb61f25ad0abfbea508e946df,arquivos_brutos\lmd_full\0\007d001cb61f25ad0abfbea508e946df.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+0081422cc93283be5ed3a4538e72291b,arquivos_brutos\lmd_full\0\0081422cc93283be5ed3a4538e72291b.mid,MUITO_CURTO,duracao=10.97s < 15.0s
+008260e0702fc1088ae0b6bb305489a8,arquivos_brutos\lmd_full\0\008260e0702fc1088ae0b6bb305489a8.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+008775ee23d5df0731bebc2822ae369f,arquivos_brutos\lmd_full\0\008775ee23d5df0731bebc2822ae369f.mid,CORROMPIDO,
+008879c5ade35be61ca6abf4484b01b1,arquivos_brutos\lmd_full\0\008879c5ade35be61ca6abf4484b01b1.mid,MUITO_CURTO,duracao=4.83s < 15.0s
+008f692b25f38a3b5053f4dc34af5e64,arquivos_brutos\lmd_full\0\008f692b25f38a3b5053f4dc34af5e64.mid,MUITO_CURTO,duracao=6.35s < 15.0s
+008f9e5e17be715466f0c259518b1d68,arquivos_brutos\lmd_full\0\008f9e5e17be715466f0c259518b1d68.mid,CORROMPIDO,
+00925404346bdacc7255b73532bf23bf,arquivos_brutos\lmd_full\0\00925404346bdacc7255b73532bf23bf.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+0093861fab0bcad00bde3a757c29dec4,arquivos_brutos\lmd_full\0\0093861fab0bcad00bde3a757c29dec4.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+009aa1eb89c468a494a276e11528a1da,arquivos_brutos\lmd_full\0\009aa1eb89c468a494a276e11528a1da.mid,MUITO_CURTO,duracao=5.31s < 15.0s
+009c07e8f781eedcb7f66c2efabd4e54,arquivos_brutos\lmd_full\0\009c07e8f781eedcb7f66c2efabd4e54.mid,MUITO_LONGO,duracao=745.95s > 600.0s
+009e266bb868fc238366c466e19094ba,arquivos_brutos\lmd_full\0\009e266bb868fc238366c466e19094ba.mid,CORROMPIDO,data byte must be in range 0..127
+009e4871c2f517668da13a418baa20bc,arquivos_brutos\lmd_full\0\009e4871c2f517668da13a418baa20bc.mid,MUITO_CURTO,duracao=13.91s < 15.0s
+00a3ba3fee47d7d1bb24b3a17e18061c,arquivos_brutos\lmd_full\0\00a3ba3fee47d7d1bb24b3a17e18061c.mid,MUITO_CURTO,duracao=12.75s < 15.0s
+00a6fcf5afc65dee2a833291b4c11b0c,arquivos_brutos\lmd_full\0\00a6fcf5afc65dee2a833291b4c11b0c.mid,SEM_NOTAS,num_notas=0
+00ac85b544fc401229d325ce9f27f03c,arquivos_brutos\lmd_full\0\00ac85b544fc401229d325ce9f27f03c.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+00aeaf27ebd15799281e02a4d12789af,arquivos_brutos\lmd_full\0\00aeaf27ebd15799281e02a4d12789af.mid,MUITO_CURTO,duracao=6.96s < 15.0s
+00c2be23fb04fc4653db8f216310e396,arquivos_brutos\lmd_full\0\00c2be23fb04fc4653db8f216310e396.mid,MUITO_LONGO,duracao=660.12s > 600.0s
+00d7995b98bc565880c111fc80c617f3,arquivos_brutos\lmd_full\0\00d7995b98bc565880c111fc80c617f3.mid,CORROMPIDO,
+00e3c3ce5f8674151f36ff74ca914f0e,arquivos_brutos\lmd_full\0\00e3c3ce5f8674151f36ff74ca914f0e.mid,MUITO_CURTO,duracao=6.33s < 15.0s
+00e6d5785a99002bc645765b8851e9ff,arquivos_brutos\lmd_full\0\00e6d5785a99002bc645765b8851e9ff.mid,CORROMPIDO,data byte must be in range 0..127
+00e82f0cd983351e2c80c72d7d3d4a60,arquivos_brutos\lmd_full\0\00e82f0cd983351e2c80c72d7d3d4a60.mid,MUITO_LONGO,duracao=1240.27s > 600.0s
+00ecb3028d926f0e405672564ee79cca,arquivos_brutos\lmd_full\0\00ecb3028d926f0e405672564ee79cca.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+00efa70c7e86dee73e574d3366874eca,arquivos_brutos\lmd_full\0\00efa70c7e86dee73e574d3366874eca.mid,MUITO_CURTO,duracao=13.34s < 15.0s
+00f2d348240f9a45cda84e38afead54d,arquivos_brutos\lmd_full\0\00f2d348240f9a45cda84e38afead54d.mid,MUITO_CURTO,duracao=13.69s < 15.0s
+00f5324ac62ad8fef22e9b881d5273af,arquivos_brutos\lmd_full\0\00f5324ac62ad8fef22e9b881d5273af.mid,MUITO_LONGO,duracao=1127.73s > 600.0s
+0125a7d4e19cc90b38ed419aa6e19cab,arquivos_brutos\lmd_full\0\0125a7d4e19cc90b38ed419aa6e19cab.mid,CORROMPIDO,Could not decode key with 5 flats and mode 255
+0125e3b74ec93ec4a6a1dca0f4f67a0f,arquivos_brutos\lmd_full\0\0125e3b74ec93ec4a6a1dca0f4f67a0f.mid,CORROMPIDO,
+012bc587a7dda1a1111ae44e94c2601a,arquivos_brutos\lmd_full\0\012bc587a7dda1a1111ae44e94c2601a.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+012dac606e4041ee7d38dac43e48febe,arquivos_brutos\lmd_full\0\012dac606e4041ee7d38dac43e48febe.mid,MUITO_CURTO,duracao=11.30s < 15.0s
+01316a353cc0d3b753dcbb93349bdfa9,arquivos_brutos\lmd_full\0\01316a353cc0d3b753dcbb93349bdfa9.mid,CORROMPIDO,data byte must be in range 0..127
+0131c3f064ef2029b2453e848d365df9,arquivos_brutos\lmd_full\0\0131c3f064ef2029b2453e848d365df9.mid,CORROMPIDO,
+013207cb984405b655b6e93116ae2aa8,arquivos_brutos\lmd_full\0\013207cb984405b655b6e93116ae2aa8.mid,MUITO_CURTO,duracao=11.29s < 15.0s
+0133378155497a10c459b63eec31bf62,arquivos_brutos\lmd_full\0\0133378155497a10c459b63eec31bf62.mid,MUITO_LONGO,duracao=618.96s > 600.0s
+0135d6b6530263bf16ed8b94f2d23d5d,arquivos_brutos\lmd_full\0\0135d6b6530263bf16ed8b94f2d23d5d.mid,MUITO_CURTO,duracao=9.60s < 15.0s
+013c307397b6edac74d719e685619a0a,arquivos_brutos\lmd_full\0\013c307397b6edac74d719e685619a0a.mid,CORROMPIDO,Could not decode key with 8 sharps and mode 0
+013f3ef57c7ce833cb5162da3fdcfafd,arquivos_brutos\lmd_full\0\013f3ef57c7ce833cb5162da3fdcfafd.mid,MUITO_CURTO,duracao=4.49s < 15.0s
+01449f80e9bb501805d5ee2f95aff7d1,arquivos_brutos\lmd_full\0\01449f80e9bb501805d5ee2f95aff7d1.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+01453329a676f7dad80ec8dbdd1a43d9,arquivos_brutos\lmd_full\0\01453329a676f7dad80ec8dbdd1a43d9.mid,MUITO_CURTO,duracao=8.00s < 15.0s
+01481c48c5af793418db188289e57c75,arquivos_brutos\lmd_full\0\01481c48c5af793418db188289e57c75.mid,MUITO_CURTO,duracao=4.88s < 15.0s
+01543d42174fa88c31c5176f50cd0502,arquivos_brutos\lmd_full\0\01543d42174fa88c31c5176f50cd0502.mid,CORROMPIDO,data byte must be in range 0..127
+015628e6eddd21c9ff3caf46b929d037,arquivos_brutos\lmd_full\0\015628e6eddd21c9ff3caf46b929d037.mid,MUITO_CURTO,duracao=14.77s < 15.0s
+015dd8fedf5c04c19a70868808a0d5f5,arquivos_brutos\lmd_full\0\015dd8fedf5c04c19a70868808a0d5f5.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+01665562316e5a318434b9292cf462c3,arquivos_brutos\lmd_full\0\01665562316e5a318434b9292cf462c3.mid,MUITO_CURTO,duracao=10.84s < 15.0s
+017bc5fbe067dbb3bae591d29e816cc6,arquivos_brutos\lmd_full\0\017bc5fbe067dbb3bae591d29e816cc6.mid,MUITO_CURTO,duracao=6.86s < 15.0s
+017eb90adecd9c9890a77cef0a8d5fb2,arquivos_brutos\lmd_full\0\017eb90adecd9c9890a77cef0a8d5fb2.mid,MUITO_LONGO,duracao=924.44s > 600.0s
+0187db512981c259f61750309ead6f77,arquivos_brutos\lmd_full\0\0187db512981c259f61750309ead6f77.mid,MUITO_CURTO,duracao=6.28s < 15.0s
+018b4f76eaedcf9668837c269d191edd,arquivos_brutos\lmd_full\0\018b4f76eaedcf9668837c269d191edd.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+018d3db7c6d8151bd431234be95475af,arquivos_brutos\lmd_full\0\018d3db7c6d8151bd431234be95475af.mid,MUITO_CURTO,duracao=6.33s < 15.0s
+01940677170e34fe913149cf80b5f3a5,arquivos_brutos\lmd_full\0\01940677170e34fe913149cf80b5f3a5.mid,CORROMPIDO,data byte must be in range 0..127
+0199d446580d62905259fd269e957c92,arquivos_brutos\lmd_full\0\0199d446580d62905259fd269e957c92.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+019bf5d3b9fdc6253ce843549b751249,arquivos_brutos\lmd_full\0\019bf5d3b9fdc6253ce843549b751249.mid,MUITO_CURTO,duracao=6.58s < 15.0s
+01a42ae8cf7ccd8a1190448a3f96d243,arquivos_brutos\lmd_full\0\01a42ae8cf7ccd8a1190448a3f96d243.mid,MUITO_LONGO,duracao=805.43s > 600.0s
+01a9aa162473f4f78d9cc399b0e9685c,arquivos_brutos\lmd_full\0\01a9aa162473f4f78d9cc399b0e9685c.mid,MUITO_CURTO,duracao=5.67s < 15.0s
+01aa73d1077fff4dc31b42a3042c35e0,arquivos_brutos\lmd_full\0\01aa73d1077fff4dc31b42a3042c35e0.mid,MUITO_CURTO,duracao=14.41s < 15.0s
+01aac35b4ac9c308d2cb67994946fe90,arquivos_brutos\lmd_full\0\01aac35b4ac9c308d2cb67994946fe90.mid,MUITO_CURTO,duracao=11.84s < 15.0s
+01aef42f1daa3638960218aa71850b61,arquivos_brutos\lmd_full\0\01aef42f1daa3638960218aa71850b61.mid,SEM_NOTAS,num_notas=0
+01b160746c2fe03fd001e05a7c9a6e36,arquivos_brutos\lmd_full\0\01b160746c2fe03fd001e05a7c9a6e36.mid,MUITO_CURTO,duracao=4.17s < 15.0s
+01b3d98068d5e061c136ba0c943d5d8a,arquivos_brutos\lmd_full\0\01b3d98068d5e061c136ba0c943d5d8a.mid,SEM_NOTAS,num_notas=0
+01b52e2c762181ef000d9cf0ea718b90,arquivos_brutos\lmd_full\0\01b52e2c762181ef000d9cf0ea718b90.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+01be8b78d1bab2a8bc4080e3018efed0,arquivos_brutos\lmd_full\0\01be8b78d1bab2a8bc4080e3018efed0.mid,MUITO_CURTO,duracao=10.40s < 15.0s
+01cd751035e2214bfc44bd6775d1ba50,arquivos_brutos\lmd_full\0\01cd751035e2214bfc44bd6775d1ba50.mid,MUITO_CURTO,duracao=3.98s < 15.0s
+01d06698ccff705cf88a10ba76044cd1,arquivos_brutos\lmd_full\0\01d06698ccff705cf88a10ba76044cd1.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+01d2e049067fd1abff58317c233fd0ed,arquivos_brutos\lmd_full\0\01d2e049067fd1abff58317c233fd0ed.mid,MUITO_CURTO,duracao=7.39s < 15.0s
+01d57bf4e0279435d2ae6aafadb8ea75,arquivos_brutos\lmd_full\0\01d57bf4e0279435d2ae6aafadb8ea75.mid,CORROMPIDO,Could not decode key with 1 flats and mode 255
+01de478372488e3c94587ddc624937d2,arquivos_brutos\lmd_full\0\01de478372488e3c94587ddc624937d2.mid,CORROMPIDO,running status without last_status
+01e4d4c4aa4f114aac5931485f8049e2,arquivos_brutos\lmd_full\0\01e4d4c4aa4f114aac5931485f8049e2.mid,MUITO_LONGO,duracao=1205.95s > 600.0s
+01e783064d34a18ef043fb92e2c4904d,arquivos_brutos\lmd_full\0\01e783064d34a18ef043fb92e2c4904d.mid,ARQUIVO_MINIMO,tamanho=181 bytes
+01e933a92ecf4a9d37636c7cbf28dc64,arquivos_brutos\lmd_full\0\01e933a92ecf4a9d37636c7cbf28dc64.mid,CORROMPIDO,data byte must be in range 0..127
+01e9afcc6174f4d16c5e3ba53ced461d,arquivos_brutos\lmd_full\0\01e9afcc6174f4d16c5e3ba53ced461d.mid,CORROMPIDO,data byte must be in range 0..127
+01f6d4028e268730e77dee8ec0a55244,arquivos_brutos\lmd_full\0\01f6d4028e268730e77dee8ec0a55244.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+01fab306810061dcaa7c13fb13a4c9fc,arquivos_brutos\lmd_full\0\01fab306810061dcaa7c13fb13a4c9fc.mid,MUITO_LONGO,duracao=713.09s > 600.0s
+01fb957a9de06f50477a107d3c5366fa,arquivos_brutos\lmd_full\0\01fb957a9de06f50477a107d3c5366fa.mid,MUITO_CURTO,duracao=7.33s < 15.0s
+0206d0152fffe8847adb4e940ca5586a,arquivos_brutos\lmd_full\0\0206d0152fffe8847adb4e940ca5586a.mid,MUITO_CURTO,duracao=5.67s < 15.0s
+020747a3133fda70ed05000c58df4dc2,arquivos_brutos\lmd_full\0\020747a3133fda70ed05000c58df4dc2.mid,MUITO_LONGO,duracao=950.40s > 600.0s
+020be739f18de12a1c4441e704880090,arquivos_brutos\lmd_full\0\020be739f18de12a1c4441e704880090.mid,MUITO_CURTO,duracao=4.00s < 15.0s
+02163ddf6897362da66b2dfbb30da745,arquivos_brutos\lmd_full\0\02163ddf6897362da66b2dfbb30da745.mid,CORROMPIDO,
+021aa3b5bf81d9eece1ba965705daa37,arquivos_brutos\lmd_full\0\021aa3b5bf81d9eece1ba965705daa37.mid,MUITO_LONGO,duracao=632.53s > 600.0s
+021c934394d8e1037447c30b93a8221e,arquivos_brutos\lmd_full\0\021c934394d8e1037447c30b93a8221e.mid,CORROMPIDO,data byte must be in range 0..127
+021e2159a6df21a98287d053bb96f6bc,arquivos_brutos\lmd_full\0\021e2159a6df21a98287d053bb96f6bc.mid,MUITO_CURTO,duracao=7.68s < 15.0s
+021fae7363a5c8b7a7b7a6adf3691726,arquivos_brutos\lmd_full\0\021fae7363a5c8b7a7b7a6adf3691726.mid,CORROMPIDO,4
+02225002063c6bed2a631117d45ade03,arquivos_brutos\lmd_full\0\02225002063c6bed2a631117d45ade03.mid,MUITO_CURTO,duracao=14.33s < 15.0s
+0229e47ba1e2ad4ed1b7b55dcae5ec4d,arquivos_brutos\lmd_full\0\0229e47ba1e2ad4ed1b7b55dcae5ec4d.mid,MUITO_CURTO,duracao=13.25s < 15.0s
+0231dcc00e6a02bba95f7a4c8227c62d,arquivos_brutos\lmd_full\0\0231dcc00e6a02bba95f7a4c8227c62d.mid,MUITO_CURTO,duracao=7.00s < 15.0s
+0233c2bdd9a7cf3ae8c4a8f8cf55c627,arquivos_brutos\lmd_full\0\0233c2bdd9a7cf3ae8c4a8f8cf55c627.mid,MUITO_CURTO,duracao=7.98s < 15.0s
+02408e666296c89b533e466750ea4de2,arquivos_brutos\lmd_full\0\02408e666296c89b533e466750ea4de2.mid,MUITO_LONGO,duracao=858.98s > 600.0s
+024ae60b75fe852c7b7217e6119105bc,arquivos_brutos\lmd_full\0\024ae60b75fe852c7b7217e6119105bc.mid,MUITO_CURTO,duracao=13.25s < 15.0s
+024ebe52fbee03f13431aa1eca942761,arquivos_brutos\lmd_full\0\024ebe52fbee03f13431aa1eca942761.mid,MUITO_CURTO,duracao=12.72s < 15.0s
+0251086f028dd101aa656bcb8920e915,arquivos_brutos\lmd_full\0\0251086f028dd101aa656bcb8920e915.mid,MUITO_CURTO,duracao=13.71s < 15.0s
+025535f5fea4a6b90159609373966293,arquivos_brutos\lmd_full\0\025535f5fea4a6b90159609373966293.mid,MUITO_LONGO,duracao=667.58s > 600.0s
+0263f0074e2c4aaf4c58501ef8490600,arquivos_brutos\lmd_full\0\0263f0074e2c4aaf4c58501ef8490600.mid,SEM_NOTAS,num_notas=0
+026591a7365be83eb74cbae3cd015a65,arquivos_brutos\lmd_full\0\026591a7365be83eb74cbae3cd015a65.mid,MUITO_CURTO,duracao=8.33s < 15.0s
+0276604c1b3f843246beb1d614df542f,arquivos_brutos\lmd_full\0\0276604c1b3f843246beb1d614df542f.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+027e8eab8fb2aa24c7af131f1c329911,arquivos_brutos\lmd_full\0\027e8eab8fb2aa24c7af131f1c329911.mid,MUITO_CURTO,duracao=7.38s < 15.0s
+0280f87b9b3436611415a30f2db4169a,arquivos_brutos\lmd_full\0\0280f87b9b3436611415a30f2db4169a.mid,MUITO_LONGO,duracao=635.73s > 600.0s
+028175b6044dc86989807b6fcd5ef113,arquivos_brutos\lmd_full\0\028175b6044dc86989807b6fcd5ef113.mid,MUITO_CURTO,duracao=7.04s < 15.0s
+0283c50694655978acc97928705e3075,arquivos_brutos\lmd_full\0\0283c50694655978acc97928705e3075.mid,MUITO_LONGO,duracao=1167.42s > 600.0s
+02870741fee4a19d04e68bb02daa1ace,arquivos_brutos\lmd_full\0\02870741fee4a19d04e68bb02daa1ace.mid,CORROMPIDO,data byte must be in range 0..127
+028f30a9d3c3035b936e22dd4616dd30,arquivos_brutos\lmd_full\0\028f30a9d3c3035b936e22dd4616dd30.mid,CORROMPIDO,list index out of range
+0294ab6a306a9c47166e26ad47200668,arquivos_brutos\lmd_full\0\0294ab6a306a9c47166e26ad47200668.mid,CORROMPIDO,list index out of range
+0295f1596c37ca391493136c4228521c,arquivos_brutos\lmd_full\0\0295f1596c37ca391493136c4228521c.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+02aaa35d45ff1f6b72080c0a4b88c225,arquivos_brutos\lmd_full\0\02aaa35d45ff1f6b72080c0a4b88c225.mid,MUITO_CURTO,duracao=6.94s < 15.0s
+02ab18066a9d8e1d281ba23c3be173c1,arquivos_brutos\lmd_full\0\02ab18066a9d8e1d281ba23c3be173c1.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+02ac8a55818ca23d50c453dbebef5806,arquivos_brutos\lmd_full\0\02ac8a55818ca23d50c453dbebef5806.mid,CORROMPIDO,Could not decode key with 1 flats and mode 255
+02acbb99c07f15b341c7e0215354fa36,arquivos_brutos\lmd_full\0\02acbb99c07f15b341c7e0215354fa36.mid,CORROMPIDO,
+02ad98fa521b3a22ab2ff8fe598b7769,arquivos_brutos\lmd_full\0\02ad98fa521b3a22ab2ff8fe598b7769.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+02b3e7a76be20e00e681d241662db8c7,arquivos_brutos\lmd_full\0\02b3e7a76be20e00e681d241662db8c7.mid,MUITO_LONGO,duracao=645.85s > 600.0s
+02bc7fab1ac1a1adf83023246d22120c,arquivos_brutos\lmd_full\0\02bc7fab1ac1a1adf83023246d22120c.mid,CORROMPIDO,
+02bc9d971aad1c89ae3acbb1cf3bb3dc,arquivos_brutos\lmd_full\0\02bc9d971aad1c89ae3acbb1cf3bb3dc.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+02c9ff022cae971650c1e339de678273,arquivos_brutos\lmd_full\0\02c9ff022cae971650c1e339de678273.mid,MUITO_CURTO,duracao=8.01s < 15.0s
+02cabe9fca3eb793965197c948d9e0cf,arquivos_brutos\lmd_full\0\02cabe9fca3eb793965197c948d9e0cf.mid,MUITO_CURTO,duracao=4.00s < 15.0s
+02df10305e4f36dcc56db2d77f03a597,arquivos_brutos\lmd_full\0\02df10305e4f36dcc56db2d77f03a597.mid,CORROMPIDO,data byte must be in range 0..127
+02ea40581d38a2806f7a32ff57191224,arquivos_brutos\lmd_full\0\02ea40581d38a2806f7a32ff57191224.mid,MUITO_CURTO,duracao=14.44s < 15.0s
+02ef20753d5af20f74e21590816e1c56,arquivos_brutos\lmd_full\0\02ef20753d5af20f74e21590816e1c56.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+02f1796889b4d51a28f40356528478bd,arquivos_brutos\lmd_full\0\02f1796889b4d51a28f40356528478bd.mid,MUITO_CURTO,duracao=15.00s < 15.0s
+02f1ace4084c3ff20d7c88c5d5ad3283,arquivos_brutos\lmd_full\0\02f1ace4084c3ff20d7c88c5d5ad3283.mid,MUITO_CURTO,duracao=13.11s < 15.0s
+02feda4c6a93f074bfcd00d0ac4cadb0,arquivos_brutos\lmd_full\0\02feda4c6a93f074bfcd00d0ac4cadb0.mid,MUITO_CURTO,duracao=4.50s < 15.0s
+0302754150beb50b30cb2862d212fa7a,arquivos_brutos\lmd_full\0\0302754150beb50b30cb2862d212fa7a.mid,CORROMPIDO,"MIDI file has a largest tick of 72759961, it is likely corrupt"
+030f057c7015b8ca008036932799e0c6,arquivos_brutos\lmd_full\0\030f057c7015b8ca008036932799e0c6.mid,CORROMPIDO,data byte must be in range 0..127
+031c09b4463c3c05edcf77eebc97e82d,arquivos_brutos\lmd_full\0\031c09b4463c3c05edcf77eebc97e82d.mid,CORROMPIDO,Could not decode key with 1 flats and mode 255
+031c776a1cc6efa6e862eed2b07fdec8,arquivos_brutos\lmd_full\0\031c776a1cc6efa6e862eed2b07fdec8.mid,CORROMPIDO,data byte must be in range 0..127
+0323e56a99c3a71822feb42c1b2ec134,arquivos_brutos\lmd_full\0\0323e56a99c3a71822feb42c1b2ec134.mid,CORROMPIDO,data byte must be in range 0..127
+0333c15fdde6d9ef5520cbcabd2c76a8,arquivos_brutos\lmd_full\0\0333c15fdde6d9ef5520cbcabd2c76a8.mid,CORROMPIDO,data byte must be in range 0..127
+0334f6171ffb2b06c424ad82e0f7eb9b,arquivos_brutos\lmd_full\0\0334f6171ffb2b06c424ad82e0f7eb9b.mid,MUITO_CURTO,duracao=8.22s < 15.0s
+0336dce28bb8a0075d4d5b3fdf480ee6,arquivos_brutos\lmd_full\0\0336dce28bb8a0075d4d5b3fdf480ee6.mid,MUITO_CURTO,duracao=4.24s < 15.0s
+033e1ec7902dac30a23c6ed6f22e712b,arquivos_brutos\lmd_full\0\033e1ec7902dac30a23c6ed6f22e712b.mid,MUITO_CURTO,duracao=11.29s < 15.0s
+03410208647bb08894aa5c586a5ef135,arquivos_brutos\lmd_full\0\03410208647bb08894aa5c586a5ef135.mid,MUITO_LONGO,duracao=692.98s > 600.0s
+0341157271d59028b36b440bc83a5816,arquivos_brutos\lmd_full\0\0341157271d59028b36b440bc83a5816.mid,CORROMPIDO,
+03433461ad4b22eca8d8483a7ff43711,arquivos_brutos\lmd_full\0\03433461ad4b22eca8d8483a7ff43711.mid,MUITO_CURTO,duracao=0.20s < 15.0s
+034693194823c1ca903d21811ffa166c,arquivos_brutos\lmd_full\0\034693194823c1ca903d21811ffa166c.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+034bc59e87b8bca44d99c3b98269fa6b,arquivos_brutos\lmd_full\0\034bc59e87b8bca44d99c3b98269fa6b.mid,CORROMPIDO,data byte must be in range 0..127
+034ccadc54432200aba3160363c4071c,arquivos_brutos\lmd_full\0\034ccadc54432200aba3160363c4071c.mid,MUITO_LONGO,duracao=835.00s > 600.0s
+035230c6d097cf8a8ec0f838464d46f6,arquivos_brutos\lmd_full\0\035230c6d097cf8a8ec0f838464d46f6.mid,MUITO_LONGO,duracao=764.29s > 600.0s
+03554b0c66183fc98b22747a39bc99fa,arquivos_brutos\lmd_full\0\03554b0c66183fc98b22747a39bc99fa.mid,MUITO_CURTO,duracao=6.71s < 15.0s
+0356cfa60bcd6ba1adf09249b0b945ab,arquivos_brutos\lmd_full\0\0356cfa60bcd6ba1adf09249b0b945ab.mid,CORROMPIDO,4
+035ecccad0ebf5e7154aae9dab4f4cfe,arquivos_brutos\lmd_full\0\035ecccad0ebf5e7154aae9dab4f4cfe.mid,CORROMPIDO,Could not decode key with 2 flats and mode 255
+036095b26f686afc74acef99fb415278,arquivos_brutos\lmd_full\0\036095b26f686afc74acef99fb415278.mid,MUITO_CURTO,duracao=7.50s < 15.0s
+0362ca2e7bfc3cb397f72ae61ec688f3,arquivos_brutos\lmd_full\0\0362ca2e7bfc3cb397f72ae61ec688f3.mid,CORROMPIDO,
+03691a425608a7e96d3a2a8046c6435b,arquivos_brutos\lmd_full\0\03691a425608a7e96d3a2a8046c6435b.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+0382594a22460af2f73917834e11cfb2,arquivos_brutos\lmd_full\0\0382594a22460af2f73917834e11cfb2.mid,MUITO_CURTO,duracao=3.00s < 15.0s
+03844f549431e8b7ce90875f7df97480,arquivos_brutos\lmd_full\0\03844f549431e8b7ce90875f7df97480.mid,MUITO_CURTO,duracao=5.47s < 15.0s
+038531506fc0096aa21f19a15b6d877a,arquivos_brutos\lmd_full\0\038531506fc0096aa21f19a15b6d877a.mid,MUITO_CURTO,duracao=10.00s < 15.0s
+0388474e96afcf884c1785451a2f7887,arquivos_brutos\lmd_full\0\0388474e96afcf884c1785451a2f7887.mid,MUITO_LONGO,duracao=604.60s > 600.0s
+038a0e0a9e44e1695b736e2a5dd09ec3,arquivos_brutos\lmd_full\0\038a0e0a9e44e1695b736e2a5dd09ec3.mid,MUITO_LONGO,duracao=2466.95s > 600.0s
+038ca4f93816de50c8fa874320e29d96,arquivos_brutos\lmd_full\0\038ca4f93816de50c8fa874320e29d96.mid,MUITO_CURTO,duracao=13.71s < 15.0s
+038d223acc9c78a3fcf1e7f3e688b595,arquivos_brutos\lmd_full\0\038d223acc9c78a3fcf1e7f3e688b595.mid,CORROMPIDO,
+03901013243de874d994718b7a033626,arquivos_brutos\lmd_full\0\03901013243de874d994718b7a033626.mid,MUITO_CURTO,duracao=2.16s < 15.0s
+03987eec9008640cd0987385dfa7d3c3,arquivos_brutos\lmd_full\0\03987eec9008640cd0987385dfa7d3c3.mid,CORROMPIDO,data byte must be in range 0..127
+0399d8d798533c207f8ee984ebef27ee,arquivos_brutos\lmd_full\0\0399d8d798533c207f8ee984ebef27ee.mid,MUITO_CURTO,duracao=6.86s < 15.0s
+0399dbbcdf63970631c4a6827fe4c014,arquivos_brutos\lmd_full\0\0399dbbcdf63970631c4a6827fe4c014.mid,MUITO_CURTO,duracao=4.00s < 15.0s
+039b42360729cf682a5b571f0a0581e7,arquivos_brutos\lmd_full\0\039b42360729cf682a5b571f0a0581e7.mid,MUITO_LONGO,duracao=661.00s > 600.0s
+03a313fae4ba5c5d4ac1602a71af3176,arquivos_brutos\lmd_full\0\03a313fae4ba5c5d4ac1602a71af3176.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+03a40e57111ddb34b60bc67b9537266b,arquivos_brutos\lmd_full\0\03a40e57111ddb34b60bc67b9537266b.mid,MUITO_CURTO,duracao=14.25s < 15.0s
+03a81a2fe2fc446dfda48f2668d1bf56,arquivos_brutos\lmd_full\0\03a81a2fe2fc446dfda48f2668d1bf56.mid,MUITO_CURTO,duracao=0.92s < 15.0s
+03aca219a69aa0f2987d9333529062ed,arquivos_brutos\lmd_full\0\03aca219a69aa0f2987d9333529062ed.mid,MUITO_CURTO,duracao=5.51s < 15.0s
+03ace911502640398e6fd64c06f78b7f,arquivos_brutos\lmd_full\0\03ace911502640398e6fd64c06f78b7f.mid,CORROMPIDO,
+03b0a3a4225538c792fb72db8c22f7ad,arquivos_brutos\lmd_full\0\03b0a3a4225538c792fb72db8c22f7ad.mid,SEM_NOTAS,num_notas=0
+03c034dd22f963d2d47412af15a3855b,arquivos_brutos\lmd_full\0\03c034dd22f963d2d47412af15a3855b.mid,MUITO_LONGO,duracao=837.12s > 600.0s
+03caaec7d0783fc45c2b5fd977677671,arquivos_brutos\lmd_full\0\03caaec7d0783fc45c2b5fd977677671.mid,MUITO_CURTO,duracao=14.77s < 15.0s
+03cb5a6797325f2d3d17a23f1ffc41f6,arquivos_brutos\lmd_full\0\03cb5a6797325f2d3d17a23f1ffc41f6.mid,CORROMPIDO,
+03cdcb27c4a50bf86111abf378ad0fe2,arquivos_brutos\lmd_full\0\03cdcb27c4a50bf86111abf378ad0fe2.mid,MUITO_CURTO,duracao=7.01s < 15.0s
+03d089aae76bd9eb6d1343d474c3fbbe,arquivos_brutos\lmd_full\0\03d089aae76bd9eb6d1343d474c3fbbe.mid,ARQUIVO_MINIMO,tamanho=152 bytes
+03de6555eb99f9fc625cd1b7d818c42e,arquivos_brutos\lmd_full\0\03de6555eb99f9fc625cd1b7d818c42e.mid,MUITO_CURTO,duracao=13.15s < 15.0s
+03dfabd54f72a7e060149088ed1ee0bd,arquivos_brutos\lmd_full\0\03dfabd54f72a7e060149088ed1ee0bd.mid,CORROMPIDO,data byte must be in range 0..127
+03ea1f32190b4411614a321d9c9ce287,arquivos_brutos\lmd_full\0\03ea1f32190b4411614a321d9c9ce287.mid,CORROMPIDO,
+03ec1f3d5f74e4f3be2dab735ff08647,arquivos_brutos\lmd_full\0\03ec1f3d5f74e4f3be2dab735ff08647.mid,MUITO_CURTO,duracao=6.86s < 15.0s
+03f25e16f2e239c17f268e903193ffc9,arquivos_brutos\lmd_full\0\03f25e16f2e239c17f268e903193ffc9.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+03f39b9062b733b13245513e984948cf,arquivos_brutos\lmd_full\0\03f39b9062b733b13245513e984948cf.mid,CORROMPIDO,
+03f5ae7f58705231cb439418780cdf79,arquivos_brutos\lmd_full\0\03f5ae7f58705231cb439418780cdf79.mid,MUITO_CURTO,duracao=13.62s < 15.0s
+03f9bce04952f2d8b50c84f2026da0a7,arquivos_brutos\lmd_full\0\03f9bce04952f2d8b50c84f2026da0a7.mid,CORROMPIDO,data byte must be in range 0..127
+03fc9de197cc5f94ebe1fc109caca180,arquivos_brutos\lmd_full\0\03fc9de197cc5f94ebe1fc109caca180.mid,MUITO_CURTO,duracao=10.97s < 15.0s
+03fd4d10a6d65fbacb1ec002b3fa056d,arquivos_brutos\lmd_full\0\03fd4d10a6d65fbacb1ec002b3fa056d.mid,MUITO_LONGO,duracao=3011.97s > 600.0s
+04050cc535e72648a8242844d8ca7772,arquivos_brutos\lmd_full\0\04050cc535e72648a8242844d8ca7772.mid,CORROMPIDO,
+0412137d6591bd6db44053774490bdfa,arquivos_brutos\lmd_full\0\0412137d6591bd6db44053774490bdfa.mid,MUITO_CURTO,duracao=6.33s < 15.0s
+04130a35153b10ebe8fef4d0453c71b6,arquivos_brutos\lmd_full\0\04130a35153b10ebe8fef4d0453c71b6.mid,CORROMPIDO,data byte must be in range 0..127
+041a27441286073d0dfe3b04dc9ae0d3,arquivos_brutos\lmd_full\0\041a27441286073d0dfe3b04dc9ae0d3.mid,MUITO_CURTO,duracao=8.01s < 15.0s
+042142215b8890834bb7d3ecc93b52e0,arquivos_brutos\lmd_full\0\042142215b8890834bb7d3ecc93b52e0.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+042269df062fa8e1680a57cbcc442f28,arquivos_brutos\lmd_full\0\042269df062fa8e1680a57cbcc442f28.mid,MUITO_CURTO,duracao=3.83s < 15.0s
+042d6acb51cef2eeb5bdde4e9406512f,arquivos_brutos\lmd_full\0\042d6acb51cef2eeb5bdde4e9406512f.mid,MUITO_CURTO,duracao=8.00s < 15.0s
+04335f41cc8a438b719bc612c45cd17f,arquivos_brutos\lmd_full\0\04335f41cc8a438b719bc612c45cd17f.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+0433b47e76e58950752720fb67c003c4,arquivos_brutos\lmd_full\0\0433b47e76e58950752720fb67c003c4.mid,MUITO_CURTO,duracao=15.00s < 15.0s
+044dc3d34cd462e48fa067f9cd4adb0a,arquivos_brutos\lmd_full\0\044dc3d34cd462e48fa067f9cd4adb0a.mid,CORROMPIDO,data byte must be in range 0..127
+0454902772b419c83f8ebc8402e4b5ac,arquivos_brutos\lmd_full\0\0454902772b419c83f8ebc8402e4b5ac.mid,MUITO_CURTO,duracao=8.83s < 15.0s
+0456499cb83b112f84ea0b0a45cea172,arquivos_brutos\lmd_full\0\0456499cb83b112f84ea0b0a45cea172.mid,MUITO_LONGO,duracao=908.55s > 600.0s
+0456b42bccbe04115fac35998975e47d,arquivos_brutos\lmd_full\0\0456b42bccbe04115fac35998975e47d.mid,MUITO_LONGO,duracao=1544.54s > 600.0s
+045727181be125a0bea1e417b636219c,arquivos_brutos\lmd_full\0\045727181be125a0bea1e417b636219c.mid,CORROMPIDO,data byte must be in range 0..127
+0457ec3387934143f4215aed158bf72e,arquivos_brutos\lmd_full\0\0457ec3387934143f4215aed158bf72e.mid,MUITO_CURTO,duracao=14.71s < 15.0s
+045970ad8e17cacc99ec34dd51a0a447,arquivos_brutos\lmd_full\0\045970ad8e17cacc99ec34dd51a0a447.mid,MUITO_CURTO,duracao=14.55s < 15.0s
+045a4a0bfbf8f123bd36b7c78c1ebf6c,arquivos_brutos\lmd_full\0\045a4a0bfbf8f123bd36b7c78c1ebf6c.mid,CORROMPIDO,Could not decode key with 4 flats and mode 255
+04625f57e3eed842a56598edc752c593,arquivos_brutos\lmd_full\0\04625f57e3eed842a56598edc752c593.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+0468cbd6e5619e735af186f2a39de031,arquivos_brutos\lmd_full\0\0468cbd6e5619e735af186f2a39de031.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+046946624cabca4c954d79c743845585,arquivos_brutos\lmd_full\0\046946624cabca4c954d79c743845585.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+046e8798271fbcd61f394b2bd1a6dd0b,arquivos_brutos\lmd_full\0\046e8798271fbcd61f394b2bd1a6dd0b.mid,CORROMPIDO,division by zero
+04751b90a8933397323374f2373529d1,arquivos_brutos\lmd_full\0\04751b90a8933397323374f2373529d1.mid,MUITO_CURTO,duracao=7.50s < 15.0s
+047646b571ebc321fd9be454e5d92c4f,arquivos_brutos\lmd_full\0\047646b571ebc321fd9be454e5d92c4f.mid,MUITO_CURTO,duracao=11.04s < 15.0s
+047d8c2ff80932551f8fe578788a2b1f,arquivos_brutos\lmd_full\0\047d8c2ff80932551f8fe578788a2b1f.mid,MUITO_LONGO,duracao=1020.77s > 600.0s
+047f5af6bfcca0d84c4b85a192e5875d,arquivos_brutos\lmd_full\0\047f5af6bfcca0d84c4b85a192e5875d.mid,MUITO_CURTO,duracao=8.00s < 15.0s
+04813e5f1bd029ba15d345e396f3bcbd,arquivos_brutos\lmd_full\0\04813e5f1bd029ba15d345e396f3bcbd.mid,MUITO_LONGO,duracao=1006.07s > 600.0s
+04868ca1009b311160c387e6d36e9078,arquivos_brutos\lmd_full\0\04868ca1009b311160c387e6d36e9078.mid,MUITO_LONGO,duracao=967.52s > 600.0s
+048d2c8e46dfef95b333670bbfb87f00,arquivos_brutos\lmd_full\0\048d2c8e46dfef95b333670bbfb87f00.mid,CORROMPIDO,data byte must be in range 0..127
+048d6525938de5dcdbe9bdd7eca28ec5,arquivos_brutos\lmd_full\0\048d6525938de5dcdbe9bdd7eca28ec5.mid,CORROMPIDO,running status without last_status
+049a32534a9faca2c0baf335c1c132a4,arquivos_brutos\lmd_full\0\049a32534a9faca2c0baf335c1c132a4.mid,MUITO_LONGO,duracao=843.63s > 600.0s
+049d4298b577fa759ff074cfae0a5f4c,arquivos_brutos\lmd_full\0\049d4298b577fa759ff074cfae0a5f4c.mid,MUITO_LONGO,duracao=896.79s > 600.0s
+049e89cbf5636324a03dacd7614d75fc,arquivos_brutos\lmd_full\0\049e89cbf5636324a03dacd7614d75fc.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+04a0de88e56cff03422092e6d0e87760,arquivos_brutos\lmd_full\0\04a0de88e56cff03422092e6d0e87760.mid,MUITO_CURTO,duracao=14.22s < 15.0s
+04a695d17874ca99b690be60c9ae6bd1,arquivos_brutos\lmd_full\0\04a695d17874ca99b690be60c9ae6bd1.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+04aa83185e7d22d39178f3d849960649,arquivos_brutos\lmd_full\0\04aa83185e7d22d39178f3d849960649.mid,MUITO_CURTO,duracao=13.60s < 15.0s
+04ac15e9599f1bce7f691dc07623abdf,arquivos_brutos\lmd_full\0\04ac15e9599f1bce7f691dc07623abdf.mid,CORROMPIDO,data byte must be in range 0..127
+04adfe0562deefcca1b4ed8bfc89f238,arquivos_brutos\lmd_full\0\04adfe0562deefcca1b4ed8bfc89f238.mid,MUITO_CURTO,duracao=8.00s < 15.0s
+04b3b17066490ac9f53a576340c3b023,arquivos_brutos\lmd_full\0\04b3b17066490ac9f53a576340c3b023.mid,CORROMPIDO,running status without last_status
+04bb154f6a705b7c28e6f8264f319c01,arquivos_brutos\lmd_full\0\04bb154f6a705b7c28e6f8264f319c01.mid,SEM_NOTAS,num_notas=0
+04bbf9725cdac1be555ed87517e5b62b,arquivos_brutos\lmd_full\0\04bbf9725cdac1be555ed87517e5b62b.mid,MUITO_CURTO,duracao=6.49s < 15.0s
+04bcff6465ab357ac80c637d58191097,arquivos_brutos\lmd_full\0\04bcff6465ab357ac80c637d58191097.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+04bd9e52ee481a867633d5274040113c,arquivos_brutos\lmd_full\0\04bd9e52ee481a867633d5274040113c.mid,CORROMPIDO,data byte must be in range 0..127
+04bf88454bbfa195b8b69ef20259aa4c,arquivos_brutos\lmd_full\0\04bf88454bbfa195b8b69ef20259aa4c.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+04d8befda8c7b8f67a125c85b8e53bf4,arquivos_brutos\lmd_full\0\04d8befda8c7b8f67a125c85b8e53bf4.mid,CORROMPIDO,"MIDI file has a largest tick of 4294967105, it is likely corrupt"
+04db29089c3e62209e8f5c494044e060,arquivos_brutos\lmd_full\0\04db29089c3e62209e8f5c494044e060.mid,CORROMPIDO,
+04e0aeffe506f03d33d6ba2a8bfa142d,arquivos_brutos\lmd_full\0\04e0aeffe506f03d33d6ba2a8bfa142d.mid,MUITO_CURTO,duracao=7.98s < 15.0s
+04fba9bfc79826e9dc9c0e25918c46eb,arquivos_brutos\lmd_full\0\04fba9bfc79826e9dc9c0e25918c46eb.mid,CORROMPIDO,
+050075087deebc4ee5cc8e3f6b666206,arquivos_brutos\lmd_full\0\050075087deebc4ee5cc8e3f6b666206.mid,MUITO_CURTO,duracao=8.81s < 15.0s
+0506e42f8f9461c2ba3afe5922618f6d,arquivos_brutos\lmd_full\0\0506e42f8f9461c2ba3afe5922618f6d.mid,MUITO_CURTO,duracao=7.83s < 15.0s
+050a54ac40a2e93f9eb0b46962057421,arquivos_brutos\lmd_full\0\050a54ac40a2e93f9eb0b46962057421.mid,CORROMPIDO,data byte must be in range 0..127
+050c15af3fda21ff07287bd378865353,arquivos_brutos\lmd_full\0\050c15af3fda21ff07287bd378865353.mid,MUITO_CURTO,duracao=6.40s < 15.0s
+05222b61f603c01a11a1614e4cc0b33f,arquivos_brutos\lmd_full\0\05222b61f603c01a11a1614e4cc0b33f.mid,CORROMPIDO,
+0523be401dfb6549c22d3d665c40ad26,arquivos_brutos\lmd_full\0\0523be401dfb6549c22d3d665c40ad26.mid,MUITO_LONGO,duracao=712.53s > 600.0s
+052451eb59920bd88b1609c609fdfdd6,arquivos_brutos\lmd_full\0\052451eb59920bd88b1609c609fdfdd6.mid,MUITO_CURTO,duracao=13.71s < 15.0s
+052460263a9a5376b92adecff5bbb1a9,arquivos_brutos\lmd_full\0\052460263a9a5376b92adecff5bbb1a9.mid,CORROMPIDO,
+05270495d178b63f8b5e78d8bca52393,arquivos_brutos\lmd_full\0\05270495d178b63f8b5e78d8bca52393.mid,CORROMPIDO,
+052b376743ef8b425b650110d1b46698,arquivos_brutos\lmd_full\0\052b376743ef8b425b650110d1b46698.mid,CORROMPIDO,Could not decode key with 6 flats and mode 255
+0531e73378d4fc4f86ffad4bce283f5a,arquivos_brutos\lmd_full\0\0531e73378d4fc4f86ffad4bce283f5a.mid,SEM_NOTAS,num_notas=0
+05397aeae7a1758d99dd36a207d31016,arquivos_brutos\lmd_full\0\05397aeae7a1758d99dd36a207d31016.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+05430ec81e5f9c1977a487db2913e0ff,arquivos_brutos\lmd_full\0\05430ec81e5f9c1977a487db2913e0ff.mid,CORROMPIDO,
+05448053536f0cb2c851d89c83532194,arquivos_brutos\lmd_full\0\05448053536f0cb2c851d89c83532194.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+0551759d33d7063da9c472e2fcae264c,arquivos_brutos\lmd_full\0\0551759d33d7063da9c472e2fcae264c.mid,MUITO_CURTO,duracao=13.43s < 15.0s
+05566de6affdca5b88f53957b0054022,arquivos_brutos\lmd_full\0\05566de6affdca5b88f53957b0054022.mid,MUITO_CURTO,duracao=8.83s < 15.0s
+055a135ea3c9a06cd3fd6c395d88b49f,arquivos_brutos\lmd_full\0\055a135ea3c9a06cd3fd6c395d88b49f.mid,MUITO_CURTO,duracao=4.00s < 15.0s
+055c4a62a191c603a254adee687bbab0,arquivos_brutos\lmd_full\0\055c4a62a191c603a254adee687bbab0.mid,MUITO_LONGO,duracao=812.00s > 600.0s
+056629431a6805a227b1ce7c2661775c,arquivos_brutos\lmd_full\0\056629431a6805a227b1ce7c2661775c.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+0567bec7e7c5cff2833964e43e80eaa2,arquivos_brutos\lmd_full\0\0567bec7e7c5cff2833964e43e80eaa2.mid,MUITO_CURTO,duracao=13.24s < 15.0s
+056e06e6fd250704384ae0d4e504c36f,arquivos_brutos\lmd_full\0\056e06e6fd250704384ae0d4e504c36f.mid,MUITO_CURTO,duracao=14.12s < 15.0s
+0571b5f21b8f9ef523cf3550fee0a16b,arquivos_brutos\lmd_full\0\0571b5f21b8f9ef523cf3550fee0a16b.mid,MUITO_CURTO,duracao=4.83s < 15.0s
+0573dc61442f264da6fa18074fbd0428,arquivos_brutos\lmd_full\0\0573dc61442f264da6fa18074fbd0428.mid,CORROMPIDO,
+057f3c7a834eda9651bf57c51428b4af,arquivos_brutos\lmd_full\0\057f3c7a834eda9651bf57c51428b4af.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+05870fefa8d8b3761fd8402ada0b6f91,arquivos_brutos\lmd_full\0\05870fefa8d8b3761fd8402ada0b6f91.mid,CORROMPIDO,
+058bf6eb5c64ef0bc62d264e04c53cdc,arquivos_brutos\lmd_full\0\058bf6eb5c64ef0bc62d264e04c53cdc.mid,CORROMPIDO,
+05922b127118e75d73c32de865ca8993,arquivos_brutos\lmd_full\0\05922b127118e75d73c32de865ca8993.mid,MUITO_CURTO,duracao=11.81s < 15.0s
+05979bb036df4199a2c0c188b93a8e3d,arquivos_brutos\lmd_full\0\05979bb036df4199a2c0c188b93a8e3d.mid,CORROMPIDO,list index out of range
+059b038591600410fb1b2505090c14a7,arquivos_brutos\lmd_full\0\059b038591600410fb1b2505090c14a7.mid,MUITO_CURTO,duracao=6.83s < 15.0s
+059bda48a48fd0ce57bad64ea85b6cef,arquivos_brutos\lmd_full\0\059bda48a48fd0ce57bad64ea85b6cef.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+05a4cb7f186e729a95564bb71af0d6d4,arquivos_brutos\lmd_full\0\05a4cb7f186e729a95564bb71af0d6d4.mid,MUITO_LONGO,duracao=635.73s > 600.0s
+05af18a24ab9732bd1e10d4a37733ec9,arquivos_brutos\lmd_full\0\05af18a24ab9732bd1e10d4a37733ec9.mid,MUITO_CURTO,duracao=12.72s < 15.0s
+05af81ee5840774badab2875c40624f3,arquivos_brutos\lmd_full\0\05af81ee5840774badab2875c40624f3.mid,MUITO_LONGO,duracao=1468.84s > 600.0s
+05b1236195670ebbd129d29e8941df69,arquivos_brutos\lmd_full\0\05b1236195670ebbd129d29e8941df69.mid,MUITO_CURTO,duracao=5.65s < 15.0s
+05bc14c0466505a34aec887dbab0e667,arquivos_brutos\lmd_full\0\05bc14c0466505a34aec887dbab0e667.mid,MUITO_CURTO,duracao=15.00s < 15.0s
+05c3320d6500f58255bbe881f22a335a,arquivos_brutos\lmd_full\0\05c3320d6500f58255bbe881f22a335a.mid,MUITO_CURTO,duracao=13.71s < 15.0s
+05c87cab27b86066c222fbf0c300fc26,arquivos_brutos\lmd_full\0\05c87cab27b86066c222fbf0c300fc26.mid,CORROMPIDO,
+05cadd69b9a9af662c7e1cb99d8d0e0b,arquivos_brutos\lmd_full\0\05cadd69b9a9af662c7e1cb99d8d0e0b.mid,MUITO_CURTO,duracao=5.16s < 15.0s
+05d0b2b061c382f276123395413754de,arquivos_brutos\lmd_full\0\05d0b2b061c382f276123395413754de.mid,MUITO_CURTO,duracao=13.71s < 15.0s
+05d288c81622f5e661c63d01f72f1b56,arquivos_brutos\lmd_full\0\05d288c81622f5e661c63d01f72f1b56.mid,CORROMPIDO,data byte must be in range 0..127
+05d6d6dfb73200ba60dcd0e09e277913,arquivos_brutos\lmd_full\0\05d6d6dfb73200ba60dcd0e09e277913.mid,MUITO_CURTO,duracao=14.12s < 15.0s
+05e2d98338ba7f18c2a74c1110da72c7,arquivos_brutos\lmd_full\0\05e2d98338ba7f18c2a74c1110da72c7.mid,MUITO_CURTO,duracao=13.79s < 15.0s
+05ea116402513f14b83ab01f198ee4db,arquivos_brutos\lmd_full\0\05ea116402513f14b83ab01f198ee4db.mid,MUITO_LONGO,duracao=1548.53s > 600.0s
+05f0e4cb42c2acb284e10d4da3f225d6,arquivos_brutos\lmd_full\0\05f0e4cb42c2acb284e10d4da3f225d6.mid,MUITO_CURTO,duracao=6.35s < 15.0s
+05f1b58ce55277de4d224972f5904b81,arquivos_brutos\lmd_full\0\05f1b58ce55277de4d224972f5904b81.mid,MUITO_CURTO,duracao=6.62s < 15.0s
+05f242e5ac9f437d8cc70968b4e67463,arquivos_brutos\lmd_full\0\05f242e5ac9f437d8cc70968b4e67463.mid,MUITO_CURTO,duracao=13.06s < 15.0s
+05f87b1202e1ad013d4161d6431901cf,arquivos_brutos\lmd_full\0\05f87b1202e1ad013d4161d6431901cf.mid,MUITO_LONGO,duracao=635.77s > 600.0s
+05fbec1fc6c901ddb61d713b4e9af591,arquivos_brutos\lmd_full\0\05fbec1fc6c901ddb61d713b4e9af591.mid,MUITO_CURTO,duracao=13.34s < 15.0s
+060299dd1b626fee5c92ed3cf31eaf35,arquivos_brutos\lmd_full\0\060299dd1b626fee5c92ed3cf31eaf35.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+0602dbb5445c6f23418cd3b0f0b2613d,arquivos_brutos\lmd_full\0\0602dbb5445c6f23418cd3b0f0b2613d.mid,MUITO_CURTO,duracao=4.33s < 15.0s
+0606a6ae3131d2453c98cc22b04b9351,arquivos_brutos\lmd_full\0\0606a6ae3131d2453c98cc22b04b9351.mid,MUITO_CURTO,duracao=1.67s < 15.0s
+060d803a93d5fdced2aa14e8f6214a2e,arquivos_brutos\lmd_full\0\060d803a93d5fdced2aa14e8f6214a2e.mid,MUITO_CURTO,duracao=6.58s < 15.0s
+0612ce63416bab737b3df3dbba2d575d,arquivos_brutos\lmd_full\0\0612ce63416bab737b3df3dbba2d575d.mid,MUITO_CURTO,duracao=10.97s < 15.0s
+0619f68b8c8b816edf4471abea3ff1b2,arquivos_brutos\lmd_full\0\0619f68b8c8b816edf4471abea3ff1b2.mid,MUITO_CURTO,duracao=12.55s < 15.0s
+0621cbe708d2512d51a282d4aaaa8a10,arquivos_brutos\lmd_full\0\0621cbe708d2512d51a282d4aaaa8a10.mid,CORROMPIDO,data byte must be in range 0..127
+0623d48070a9beb9da658ba94b9f63ff,arquivos_brutos\lmd_full\0\0623d48070a9beb9da658ba94b9f63ff.mid,MUITO_CURTO,duracao=8.00s < 15.0s
+06270ed9aeef6e7ccb6aec289a6cb23b,arquivos_brutos\lmd_full\0\06270ed9aeef6e7ccb6aec289a6cb23b.mid,MUITO_CURTO,duracao=13.92s < 15.0s
+063236d70daaa838b8978836382484d1,arquivos_brutos\lmd_full\0\063236d70daaa838b8978836382484d1.mid,SEM_NOTAS,num_notas=0
+063f49637b85993fa896d68e298ac34f,arquivos_brutos\lmd_full\0\063f49637b85993fa896d68e298ac34f.mid,MUITO_CURTO,duracao=12.80s < 15.0s
+0652a40ae34f6fcbb637976a2d867cc7,arquivos_brutos\lmd_full\0\0652a40ae34f6fcbb637976a2d867cc7.mid,MUITO_CURTO,duracao=9.00s < 15.0s
+06537d29ba8b8dc11689c60aabd8302f,arquivos_brutos\lmd_full\0\06537d29ba8b8dc11689c60aabd8302f.mid,MUITO_LONGO,duracao=905.34s > 600.0s
+06597c6d4412e84b2588fc21aef94c7f,arquivos_brutos\lmd_full\0\06597c6d4412e84b2588fc21aef94c7f.mid,CORROMPIDO,data byte must be in range 0..127
+065b9b8466d925ee8bf5e3b48c53c895,arquivos_brutos\lmd_full\0\065b9b8466d925ee8bf5e3b48c53c895.mid,CORROMPIDO,
+06638ea9dfb930432ba5fd125f49f4d7,arquivos_brutos\lmd_full\0\06638ea9dfb930432ba5fd125f49f4d7.mid,MUITO_CURTO,duracao=8.32s < 15.0s
+06665044130ded0f8a04b0cc4c5ff546,arquivos_brutos\lmd_full\0\06665044130ded0f8a04b0cc4c5ff546.mid,CORROMPIDO,
+066bf579a5989116e1285279e35b5560,arquivos_brutos\lmd_full\0\066bf579a5989116e1285279e35b5560.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+0670d55de69be633b7d7e4bd14962216,arquivos_brutos\lmd_full\0\0670d55de69be633b7d7e4bd14962216.mid,MUITO_CURTO,duracao=10.33s < 15.0s
+06724b2c773f563a35ab7b789b7e33ed,arquivos_brutos\lmd_full\0\06724b2c773f563a35ab7b789b7e33ed.mid,MUITO_CURTO,duracao=13.71s < 15.0s
+067a26ed411455b11f2987bb67be9351,arquivos_brutos\lmd_full\0\067a26ed411455b11f2987bb67be9351.mid,SEM_NOTAS,num_notas=0
+067bc104c08f777561da368ef1475718,arquivos_brutos\lmd_full\0\067bc104c08f777561da368ef1475718.mid,MUITO_CURTO,duracao=13.71s < 15.0s
+067db02a20060c50e9eac1c132dbb3ef,arquivos_brutos\lmd_full\0\067db02a20060c50e9eac1c132dbb3ef.mid,MUITO_LONGO,duracao=656.54s > 600.0s
+067dffc37b3770b4f1c246cc7023b64d,arquivos_brutos\lmd_full\0\067dffc37b3770b4f1c246cc7023b64d.mid,MUITO_LONGO,duracao=2740.18s > 600.0s
+067f2fb36264c7b74866a7c9c850e83c,arquivos_brutos\lmd_full\0\067f2fb36264c7b74866a7c9c850e83c.mid,MUITO_CURTO,duracao=11.06s < 15.0s
+0682df6c6411dbfd9afe6b14810e6fe2,arquivos_brutos\lmd_full\0\0682df6c6411dbfd9afe6b14810e6fe2.mid,CORROMPIDO,Could not decode key with 3 flats and mode 255
+06916e1b8d24da0cae8a7910d15221b4,arquivos_brutos\lmd_full\0\06916e1b8d24da0cae8a7910d15221b4.mid,MUITO_LONGO,duracao=622.99s > 600.0s
+069296f6986b187187d6c42e11010ddd,arquivos_brutos\lmd_full\0\069296f6986b187187d6c42e11010ddd.mid,CORROMPIDO,data byte must be in range 0..127
+069a3ce3c45b7e15f46138c5e5a67469,arquivos_brutos\lmd_full\0\069a3ce3c45b7e15f46138c5e5a67469.mid,SEM_NOTAS,num_notas=0
+069a7363677ce7b50948509d543abb25,arquivos_brutos\lmd_full\0\069a7363677ce7b50948509d543abb25.mid,MUITO_CURTO,duracao=10.33s < 15.0s
+069c70135444fc5bf854016c1149dc5c,arquivos_brutos\lmd_full\0\069c70135444fc5bf854016c1149dc5c.mid,MUITO_CURTO,duracao=4.00s < 15.0s
+06a1a2124953d82c722319674537a703,arquivos_brutos\lmd_full\0\06a1a2124953d82c722319674537a703.mid,MUITO_CURTO,duracao=14.02s < 15.0s
+06aba1aa2ed9b9e2aa8cc085e7619a4a,arquivos_brutos\lmd_full\0\06aba1aa2ed9b9e2aa8cc085e7619a4a.mid,CORROMPIDO,MThd not found. Probably not a MIDI file
+06b65be574bccdff81c103220c690838,arquivos_brutos\lmd_full\0\06b65be574bccdff81c103220c690838.mid,MUITO_CURTO,duracao=14.77s < 15.0s
+06bd5b6a22e9973482245204ff9ead55,arquivos_brutos\lmd_full\0\06bd5b6a22e9973482245204ff9ead55.mid,MUITO_LONGO,duracao=661.00s > 600.0s
+06be50857e76540e70887fcffcfc9cda,arquivos_brutos\lmd_full\0\06be50857e76540e70887fcffcfc9cda.mid,MUITO_CURTO,duracao=14.13s < 15.0s
+06bfcf2bba778ade50321d4e07612b14,arquivos_brutos\lmd_full\0\06bfcf2bba778ade50321d4e07612b14.mid,MUITO_CURTO,duracao=9.33s < 15.0s
+06c0fecadbc1a07c92bc89a4fd8311dd,arquivos_brutos\lmd_full\0\06c0fecadbc1a07c92bc89a4fd8311dd.mid,MUITO_CURTO,duracao=12.00s < 15.0s
+06c1e2a8705f5e13aefe10b3bd4f3b52,arquivos_brutos\lmd_full\0\06c1e2a8705f5e13aefe10b3bd4f3b52.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+06c318c7d5465f102765d6f101320ed5,arquivos_brutos\lmd_full\0\06c318c7d5465f102765d6f101320ed5.mid,CORROMPIDO,data byte must be in range 0..127
+06c3697e23dac5e461ac9cf9d8bcdc76,arquivos_brutos\lmd_full\0\06c3697e23dac5e461ac9cf9d8bcdc76.mid,MUITO_CURTO,duracao=14.44s < 15.0s
+06c7c3cb9ec6bad337d47141bbb780e0,arquivos_brutos\lmd_full\0\06c7c3cb9ec6bad337d47141bbb780e0.mid,MUITO_CURTO,duracao=14.23s < 15.0s
+06c839c5159b5e8a16b1c4f8c01eae5f,arquivos_brutos\lmd_full\0\06c839c5159b5e8a16b1c4f8c01eae5f.mid,MUITO_CURTO,duracao=2.00s < 15.0s
+06c8ab370f54abaf026a48b2d4f363bb,arquivos_brutos\lmd_full\0\06c8ab370f54abaf026a48b2d4f363bb.mid,MUITO_CURTO,duracao=7.17s < 15.0s
+06cd68d3925e2f1c4cbfe9a9aebe39f6,arquivos_brutos\lmd_full\0\06cd68d3925e2f1c4cbfe9a9aebe39f6.mid,MUITO_CURTO,duracao=11.84s < 15.0s
+06cfeccf160eb203079f75e564c766a5,arquivos_brutos\lmd_full\0\06cfeccf160eb203079f75e564c766a5.mid,MUITO_CURTO,duracao=4.50s < 15.0s
+06d4097634c05dbceeac5a4eecb535d1,arquivos_brutos\lmd_full\0\06d4097634c05dbceeac5a4eecb535d1.mid,CORROMPIDO,data byte must be in range 0..127
+06d7a1373134dcaa2d66c4dcd36d6cba,arquivos_brutos\lmd_full\0\06d7a1373134dcaa2d66c4dcd36d6cba.mid,MUITO_CURTO,duracao=6.86s < 15.0s
+06d8aa4a54d26631de1734d3e6e88ecd,arquivos_brutos\lmd_full\0\06d8aa4a54d26631de1734d3e6e88ecd.mid,CORROMPIDO,Could not decode key with 4 flats and mode 255
+06e72641482bb33ac15b8141e964abb1,arquivos_brutos\lmd_full\0\06e72641482bb33ac15b8141e964abb1.mid,MUITO_CURTO,duracao=13.72s < 15.0s
+06ea25f21fdf92ad0db8a9932114c294,arquivos_brutos\lmd_full\0\06ea25f21fdf92ad0db8a9932114c294.mid,MUITO_CURTO,duracao=4.17s < 15.0s
+06ed7fc3d3d1b5b5f207f61e536dee4d,arquivos_brutos\lmd_full\0\06ed7fc3d3d1b5b5f207f61e536dee4d.mid,CORROMPIDO,Could not decode key with 1 flats and mode 255
+06edd697a0776f95f366bdf00a6ab6e7,arquivos_brutos\lmd_full\0\06edd697a0776f95f366bdf00a6ab6e7.mid,CORROMPIDO,
+06f1480a4aa9af5b99375fd8a1c62f5a,arquivos_brutos\lmd_full\0\06f1480a4aa9af5b99375fd8a1c62f5a.mid,MUITO_CURTO,duracao=5.57s < 15.0s
+06f27802a2668745a9916f8da8ab2080,arquivos_brutos\lmd_full\0\06f27802a2668745a9916f8da8ab2080.mid,MUITO_CURTO,duracao=14.30s < 15.0s
+06f4fa7a3ef4099d3fd62676886b2026,arquivos_brutos\lmd_full\0\06f4fa7a3ef4099d3fd62676886b2026.mid,MUITO_CURTO,duracao=3.98s < 15.0s
+06f56cc055dadc24b4824a48252565a7,arquivos_brutos\lmd_full\0\06f56cc055dadc24b4824a48252565a7.mid,CORROMPIDO,
+06feb5d690cbb49b90da543fe6368e0d,arquivos_brutos\lmd_full\0\06feb5d690cbb49b90da543fe6368e0d.mid,CORROMPIDO,data byte must be in range 0..127
+07099f4ee7d72f0ac5ac13f85a021e81,arquivos_brutos\lmd_full\0\07099f4ee7d72f0ac5ac13f85a021e81.mid,MUITO_CURTO,duracao=6.43s < 15.0s
+0715f89db8519517718a6d6b1bb266ea,arquivos_brutos\lmd_full\0\0715f89db8519517718a6d6b1bb266ea.mid,MUITO_LONGO,duracao=685.72s > 600.0s
+0719c08e88ad38e4d8dda932e6730ed8,arquivos_brutos\lmd_full\0\0719c08e88ad38e4d8dda932e6730ed8.mid,CORROMPIDO,
+07240f2556f616bc3aa769e3d27f016d,arquivos_brutos\lmd_full\0\07240f2556f616bc3aa769e3d27f016d.mid,MUITO_CURTO,duracao=9.04s < 15.0s

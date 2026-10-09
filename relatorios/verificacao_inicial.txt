@@ -1,0 +1,43 @@
+Total de arquivos MIDI encontrados: 178561
+
+Primeiros 10 caminhos:
+  arquivos_brutos\lmd_full\0\00000ec8a66b6bd2ef809b0443eeae41.mid
+  arquivos_brutos\lmd_full\0\0000799e8672292fe6f0fff08554ca40.mid
+  arquivos_brutos\lmd_full\0\00012722c199ae2a628ebb792ccc617a.mid
+  arquivos_brutos\lmd_full\0\000203a04a64ad57329a058f11e235cb.mid
+  arquivos_brutos\lmd_full\0\00032fb2047d3cdd0394b89349d858b4.mid
+  arquivos_brutos\lmd_full\0\00040ccb56352341cffe26c1f0f36577.mid
+  arquivos_brutos\lmd_full\0\00050936b34ae2e0529a7c2dbc3af36a.mid
+  arquivos_brutos\lmd_full\0\00052958bd8168f0fbb0b903a3cdcdc4.mid
+  arquivos_brutos\lmd_full\0\00056caa278e4192461ca42ddb952532.mid
+  arquivos_brutos\lmd_full\0\00057a6f0e39c3a4498b737a8c5e29fe.mid
+
+Distribuição por primeiro nível de subpasta (top 20):
+  5: 11262
+  7: 11258
+  6: 11249
+  f: 11229
+  b: 11214
+  d: 11200
+  c: 11167
+  2: 11139
+  a: 11137
+  4: 11136
+  0: 11132
+  9: 11107
+  1: 11102
+  8: 11097
+  e: 11076
+  3: 11056
+
+Tamanho total em disco: 5706.4 MB (5.57 GB)
+
+--- md5_to_paths.json ---
+Total de entradas no md5_to_paths.json: 178561
+Exemplos das 5 primeiras entradas:
+  1c83fc02b8c57fbc2605900bb31793fb: ['E/Exaltasamba - Megastar.mid', 'Midis Samba e Pagode/Exaltasamba - Megastar.mid', 'Midis Samba e Pagode/Exaltasamba - Megastar.mid']
+  fbcfdb9398bada87210d970ff3563a1e: ['MIDIS POP E ROCK/Lobao - A Queda.mid', 'Midis Pop e Rock/Lobao - A Queda.mid', 'Midis Pop e Rock/Lobao - A Queda.mid']
+  6d6a6ecbdc8a9141e17346dbe4c0349e: ['TV_Themes_www.tv-timewarp.co.uk_MIDIRip/Rainbow.mid']
+  7717b0e2e566e90e3e01497401863e82: ['Beatles/Happiness is a Warm Gun.mid', 'Beatles, The/Happiness-Is-A-Warm-Gun.mid', 'Beatles, The/Happiness-Is-A-Warm-Gun.mid', 'Beatles +GeorgeJohnPaulRingo/HappinessIsAWarmGun.mid', 'Beatles +GeorgeJohnPaulRingo/HappinessIsAWarmGun.mid', 'beatles/warmgun.mid', 'Various Artists/warmgun.mid', 'Beatles/happiness_is_a_warm_gun.mid', 'beatles/warmgun.mid', 'Various Artists/warmgun.mid', 'beatles/Happiness_Is_A_Warm_Gun.mid', 'H/Happiness-Is-A-Warm-Gun.mid', 'Beatles, The/Happiness-Is-A-Warm-Gun.mid', 'beatles/warmgun.mid', '100%sure.polyphone.midi/happiness_is_a_warm_gun.mid', 'beatles/happiness_is_a_warm_gun.mid', 'beatles/warmgun.mid', 'beatles/warmgun.mid', 'beatles/warmgun.mid', '100%sure.polyphone.midi/happiness_is_a_warm_gun.mid', 'beatles/happiness_is_a_warm_gun.mid', 'beatles/warmgun.mid', 'beatles/warmgun.mid']
+  13ad37b8fc7c44edfd24db0be856bc45: ['T/Thestranger.mid', 's/stranger03.mid', 'Joel, Billy/The-Stranger-2.mid', 'BILLYJ/THESTR~1.MID', 'Joel, Billy/The-Stranger-2.mid', 'BillyJoel/TheStranger.mid', 'BillyJoel/TheStranger.mid', 'UNSORTED MIDI/stranger.mid', 'UNSORTED MIDI/The_Stranger.mid', 'joel_billy/stranger.mid', 'BillyJoel/The_Stranger.mid', 'Various Artists/the_stranger.mid', 'joel_billy/the_stranger.mid', 'Billy Joel/The_Stranger.mid', 'joel_billy/stranger.mid', 'Various Artists/the_stranger.mid', 'BillyJoel/The_Stranger.mid', 'B/Billy_Joel_-_The_Stranger.mid', 'Joel, Billy/The-Stranger-2.mid', 'joel_billy/stranger.mid', 'BillyJoel/The_Stranger.mid', 'BillyJoel/The_Stranger.mid', 'joel_billy/the_stranger.mid', 'joel_billy/stranger.mid', 'BillyJoel/The_Stranger.mid', 'joel_billy/stranger.mid', 'BillyJoel/The_Stranger.mid', 'joel_billy/stranger.mid', 'BillyJoel/The_Stranger.mid', 'joel_billy/the_stranger.mid', 'joel_billy/stranger.mid', 'BillyJoel/The_Stranger.mid', 'joel_billy/stranger.mid', 'BillyJoel/The_Stranger.mid']
+Estrutura esperada: { "hash_md5": ["caminho/nome.mid"] }

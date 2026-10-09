@@ -1,18 +1,21 @@
-﻿# Dataset - não deve ser versionado no Git
-lmd_full/
-*.mid
+﻿# Dataset bruto — não versionar
+arquivos_brutos/lmd_full/
+
+# Dados processados — não versionar
+dados_processados/
+
+# Modelos — não versionar
+modelos/
 
 # Python
+*.pyc
 __pycache__/
-*.py[cod]
-*.pyo
-.env
-venv/
 .venv/
+venv/
+*.egg-info/
+dist/
+build/
 
-# Jupyter
-.ipynb_checkpoints/
-
-# OS
+# Sistema
 .DS_Store
 Thumbs.db

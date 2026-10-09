@@ -1,0 +1,37 @@
+dataset:
+  pasta_lmd_full: "arquivos_brutos/lmd_full"
+  arquivo_md5_json: "arquivos_brutos/md5_to_paths.json"
+  extensoes: [".mid", ".midi"]
+
+piloto:
+  ativo: true           # true = processar apenas N arquivos para teste
+  quantidade: 5000      # aumentar para 5000 depois de validar o pipeline
+
+filtros:
+  notas_minimas: 32
+  notas_maximas: 2000
+  duracao_minima_seg: 15.0
+  duracao_maxima_seg: 600.0
+  polifonia_maxima_pct: 0.30   # até 30% de notas simultâneas na faixa selecionada
+  pitch_minimo: 36              # C2
+  pitch_maximo: 96              # C7
+
+normalizacao:
+  quantizar_duracao: true
+  grades_ritmicas: [0.125, 0.25, 0.5, 1.0, 2.0]  # em beats (1/8, 1/4, 1/2, 1, 2)
+  regra_monofonia: "pitch_mais_agudo"              # ou "maior_duracao"
+
+divisao:
+  treino: 0.80
+  validacao: 0.10
+  teste: 0.10
+  semente: 42
+
+saidas:
+  pasta_midi_validos: "dados_processados/midi_validos"
+  pasta_melodias: "dados_processados/melodias_extraidas"
+  pasta_sequencias: "dados_processados/sequencias"
+  pasta_treino: "dados_processados/treino"
+  pasta_validacao: "dados_processados/validacao"
+  pasta_teste: "dados_processados/teste"
+  pasta_relatorios: "relatorios"
