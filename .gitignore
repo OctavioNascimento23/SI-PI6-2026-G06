@@ -1,0 +1,18 @@
+﻿# Dataset - não deve ser versionado no Git
+lmd_full/
+*.mid
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
