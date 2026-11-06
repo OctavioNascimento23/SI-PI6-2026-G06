@@ -1,31 +1,33 @@
 # Relatório de Limpeza — LMD-full — Projeto B6
 
-**Data de execução:** 2026-10-09
-**Modo:** Piloto (5.000 de 178.561 arquivos)
+**Data de execução:** 2026-10-26
+**Modo:** Inventário de 178561 arquivos; recorte de treino com 25000 MIDIs
 
 ## Números gerais
-- Total de arquivos no LMD-full analisados: 5000
-- Arquivos corrompidos ou inválidos: 111 (2.2%)
-- Arquivos sem notas: 10 (0.2%)
-- Arquivos muito curtos (< 15s): 184 (3.7%)
-- Arquivos muito longos (> 600s): 49 (1.0%)
-- Arquivos abaixo do tamanho mínimo (< 200 bytes): 2 (0.0%)
-- MIDIs aprovados na validação: 4644 (92.9%)
+- Total de arquivos no LMD-full analisados: 178561
+- Arquivos corrompidos ou inválidos: 4140 (2.3%)
+- Arquivos sem notas: 206 (0.1%)
+- Arquivos muito curtos (< 15s): 6367 (3.6%)
+- Arquivos muito longos (> 600s): 1597 (0.9%)
+- Arquivos abaixo do tamanho mínimo (< 200 bytes): 28 (0.0%)
+- MIDIs aprovados na validação: 166223 (93.1%)
+- MIDIs no recorte de treino: 25000
 
 ## Extração de melodias
-- MIDIs sem faixa melódica válida: 22
-- MIDIs descartados por filtros de qualidade: 259
-- Melodias monofônicas extraídas: 4363
+- MIDIs sem faixa melódica válida: 3194
+- MIDIs descartados por filtros de qualidade: 1982
+- Erros de leitura na extração: 0
+- Melodias monofônicas extraídas: 19824
 
 ## Tokenização
-- Sequências geradas: 4363
-- Tamanho médio das sequências (tokens): 1062.3
-- Tamanho do vocabulário: 129
+- Sequências geradas: 19824
+- Tamanho médio das sequências (tokens): 898.1
+- Tamanho do vocabulário: 74
 
 ## Divisão do dataset
-- Treino: 3490 sequências (80.0%)
-- Validação: 436 sequências (10.0%)
-- Teste: 437 sequências (10.0%)
+- Treino: 15859 sequências (80.0%)
+- Validação: 1982 sequências (10.0%)
+- Teste: 1983 sequências (10.0%)
 
 ## Parâmetros utilizados
 
@@ -36,22 +38,33 @@ dataset:
   extensoes: [".mid", ".midi"]
 
 piloto:
-  ativo: true           # true = processar apenas N arquivos para teste
-  quantidade: 5000      # aumentar para 5000 depois de validar o pipeline
+  ativo: false
+  quantidade: 500
+
+execucao:
+  trabalhadores: 6
+  retomada: true
+  lote_gravacao: 200
+
+recorte:
+  ativo: true
+  quantidade: 25000
+  semente: 42
 
 filtros:
   notas_minimas: 32
   notas_maximas: 2000
   duracao_minima_seg: 15.0
   duracao_maxima_seg: 600.0
-  polifonia_maxima_pct: 0.30   # até 30% de notas simultâneas na faixa selecionada
+  polifonia_maxima_pct: 0.30
   pitch_minimo: 36              # C2
   pitch_maximo: 96              # C7
 
 normalizacao:
   quantizar_duracao: true
-  grades_ritmicas: [0.125, 0.25, 0.5, 1.0, 2.0]  # em beats (1/8, 1/4, 1/2, 1, 2)
-  regra_monofonia: "pitch_mais_agudo"              # ou "maior_duracao"
+  grades_ritmicas: [0.125, 0.25, 0.5, 1.0, 2.0]
+  regra_monofonia: "pitch_mais_agudo"
+  transpor_para_tonica: true   # maior -> Do, menor -> La
 
 divisao:
   treino: 0.80
@@ -67,12 +80,13 @@ saidas:
   pasta_validacao: "dados_processados/validacao"
   pasta_teste: "dados_processados/teste"
   pasta_relatorios: "relatorios"
+  copiar_midi_validos: false
 ```
 
 ## Observações
-- O modo piloto processou 5.000 dos 178.561 arquivos do LMD-full (2,8% do total).
-- 97,8% dos arquivos do piloto abriram sem erros; 2,2% estão corrompidos (erros de parse MIDI).
-- O erro mais comum nos corrompidos é `data byte must be in range 0..127`, indicando dados MIDI malformados.
-- 3,7% dos arquivos foram descartados por duração < 15s (fragmentos muito curtos).
-- O vocabulário de 129 tokens é compacto e cobre todos os pitches com as 5 grades rítmicas definidas.
-- Para o pipeline completo (178 mil arquivos), estima-se ~156 mil sequências tokenizadas (~87% de aprovação).
+- O inventário percorre o LMD-full e pode ser retomado se a execução parar.
+- Os MIDIs aprovados não são copiados. A extração lê o arquivo original em arquivos_brutos.
+- O recorte de treino é uma amostra estratificada por pasta do hash, com semente 42.
+- Cada melodia é transposta para Dó maior ou Lá menor antes da tokenização.
+- As sequências ficam em JSONL, um arquivo por conjunto, sem um JSON por música.
+- Semente da divisão: 42.

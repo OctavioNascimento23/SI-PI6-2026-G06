@@ -30,26 +30,38 @@ def main():
     pasta_treino = RAIZ / cfg["saidas"]["pasta_treino"]
     caminho_modelo = RAIZ / "modelos" / "markov_modelo.pkl"
 
-    arquivos = [p for p in sorted(pasta_treino.glob("*.json"))
-                if p.stem != "vocabulario"]
+    jsonl = pasta_treino / "sequencias.jsonl"
+    arquivos = [p for p in sorted(pasta_treino.glob("*.json")) if p.stem != "vocabulario"]
 
-    if not arquivos:
-        print(f"ERRO: Nenhum arquivo .json encontrado em {pasta_treino}")
+    if not jsonl.exists() and not arquivos:
+        print(f"ERRO: Nenhuma sequência encontrada em {pasta_treino}")
         print("Execute o pipeline (scripts 01–05) antes de treinar.")
         sys.exit(1)
 
-    print(f"Arquivos de treino encontrados: {len(arquivos)}")
-
-    # Carregar todas as sequências
     todas_sequencias: list[list[str]] = []
-    for arq in tqdm(arquivos, desc="Carregando sequências"):
-        try:
-            dados = json.loads(arq.read_text(encoding="utf-8"))
-            tokens = dados.get("tokens", [])
-            if tokens:
-                todas_sequencias.append(tokens)
-        except Exception as e:
-            print(f"  AVISO: erro ao ler {arq.name}: {e}")
+    if jsonl.exists():
+        print(f"Lendo {jsonl.relative_to(RAIZ)}")
+        with open(jsonl, encoding="utf-8") as f:
+            for linha in tqdm(f, desc="Carregando sequências"):
+                linha = linha.strip()
+                if not linha:
+                    continue
+                try:
+                    tokens = json.loads(linha).get("tokens", [])
+                except json.JSONDecodeError as e:
+                    print(f"  AVISO: linha inválida: {e}")
+                    continue
+                if tokens:
+                    todas_sequencias.append(tokens)
+    else:
+        print(f"Arquivos de treino encontrados: {len(arquivos)}")
+        for arq in tqdm(arquivos, desc="Carregando sequências"):
+            try:
+                tokens = json.loads(arq.read_text(encoding="utf-8")).get("tokens", [])
+                if tokens:
+                    todas_sequencias.append(tokens)
+            except Exception as e:
+                print(f"  AVISO: erro ao ler {arq.name}: {e}")
 
     print(f"\nSequências carregadas: {len(todas_sequencias)}")
 

@@ -4,27 +4,51 @@ dataset:
   extensoes: [".mid", ".midi"]
 
 piloto:
-  ativo: true           # true = processar apenas N arquivos para teste
-  quantidade: 5000      # aumentar para 5000 depois de validar o pipeline
+  ativo: false
+  quantidade: 500
+
+execucao:
+  trabalhadores: 6
+  retomada: true
+  lote_gravacao: 200
+
+recorte:
+  ativo: true
+  quantidade: 25000
+  semente: 42
 
 filtros:
   notas_minimas: 32
   notas_maximas: 2000
   duracao_minima_seg: 15.0
   duracao_maxima_seg: 600.0
-  polifonia_maxima_pct: 0.30   # até 30% de notas simultâneas na faixa selecionada
+  polifonia_maxima_pct: 0.30
   pitch_minimo: 36              # C2
   pitch_maximo: 96              # C7
 
 normalizacao:
   quantizar_duracao: true
-  grades_ritmicas: [0.125, 0.25, 0.5, 1.0, 2.0]  # em beats (1/8, 1/4, 1/2, 1, 2)
-  regra_monofonia: "pitch_mais_agudo"              # ou "maior_duracao"
+  grades_ritmicas: [0.125, 0.25, 0.5, 1.0, 2.0]
+  regra_monofonia: "pitch_mais_agudo"
+  transpor_para_tonica: true   # maior -> Do, menor -> La
 
 divisao:
   treino: 0.80
   validacao: 0.10
   teste: 0.10
+  semente: 42
+
+modelo:
+  camadas: 2
+  embedding: 128
+  oculto: 256
+  dropout: 0.2
+  janela: 128
+  passo: 64
+  lote: 128
+  epocas: 12
+  taxa_aprendizado: 0.001
+  paciencia: 3
   semente: 42
 
 saidas:
@@ -35,3 +59,4 @@ saidas:
   pasta_validacao: "dados_processados/validacao"
   pasta_teste: "dados_processados/teste"
   pasta_relatorios: "relatorios"
+  copiar_midi_validos: false

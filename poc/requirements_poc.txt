@@ -4,3 +4,7 @@ mido
 music21
 numpy
 scipy
+transformers>=4.44
+peft>=0.13
+safetensors
+huggingface_hub

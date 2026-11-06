@@ -52,19 +52,9 @@ def limitar_duracao(tokens: list[str], bpm: int, duracao_max_seg: float) -> list
     return resultado
 
 
-def tokens_para_midi(tokens: list[str], bpm: int, caminho_saida: str | Path) -> str:
-    """
-    Converte tokens para um arquivo .mid e salva em caminho_saida.
-    Retorna o caminho salvo como string.
-    """
-    caminho_saida = Path(caminho_saida)
-    caminho_saida.parent.mkdir(parents=True, exist_ok=True)
-
+def notas_da_melodia(tokens: list[str], bpm: int) -> list[pretty_midi.Note]:
+    """Converte os tokens da LSTM em notas de piano, sem gravar o arquivo."""
     seg_por_beat = 60.0 / bpm
-
-    midi = pretty_midi.PrettyMIDI(initial_tempo=float(bpm))
-    instrumento = pretty_midi.Instrument(program=0, name="Melodia")  # piano
-
     cursor = 0.0
     pitch_pendente: int | None = None
     notas = []
@@ -80,13 +70,14 @@ def tokens_para_midi(tokens: list[str], bpm: int, caminho_saida: str | Path) -> 
         elif tok.startswith("DURATION_") and pitch_pendente is not None:
             dur_beats = float(tok.split("_")[1])
             dur_seg = dur_beats * seg_por_beat
-            nota = pretty_midi.Note(
-                velocity=80,
-                pitch=pitch_pendente,
-                start=cursor,
-                end=cursor + dur_seg,
+            notas.append(
+                pretty_midi.Note(
+                    velocity=96,
+                    pitch=pitch_pendente,
+                    start=cursor,
+                    end=cursor + dur_seg,
+                )
             )
-            notas.append(nota)
             cursor += dur_seg
             pitch_pendente = None
             i += 1
@@ -100,7 +91,20 @@ def tokens_para_midi(tokens: list[str], bpm: int, caminho_saida: str | Path) -> 
         else:
             i += 1
 
-    instrumento.notes = notas
+    return notas
+
+
+def tokens_para_midi(tokens: list[str], bpm: int, caminho_saida: str | Path) -> str:
+    """
+    Converte tokens para um arquivo .mid e salva em caminho_saida.
+    Retorna o caminho salvo como string.
+    """
+    caminho_saida = Path(caminho_saida)
+    caminho_saida.parent.mkdir(parents=True, exist_ok=True)
+
+    midi = pretty_midi.PrettyMIDI(initial_tempo=float(bpm))
+    instrumento = pretty_midi.Instrument(program=0, name="Melodia")
+    instrumento.notes = notas_da_melodia(tokens, bpm)
     midi.instruments.append(instrumento)
     midi.write(str(caminho_saida))
     return str(caminho_saida)

@@ -1,6 +1,6 @@
 """
 app.py — Aplicação Streamlit principal
-Gerador de Melodias com Cadeia de Markov — Projeto B6
+Gerador de Melodias com LSTM — Projeto B6
 """
 
 import base64
@@ -16,10 +16,10 @@ sys.path.insert(0, str(RAIZ))
 
 from poc.teoria_musical import (
     ESCALAS,
-    filtrar_tokens_por_tonalidade,
     pitch_para_nome,
+    transpor_tokens_para_tonalidade,
 )
-from poc.midi_builder import tokens_para_midi, limitar_duracao
+from poc.midi_builder import limitar_duracao
 from poc.audio_renderer import renderizar
 
 # ---------------------------------------------------------------------------
@@ -36,15 +36,32 @@ st.set_page_config(
 # Carregamento do modelo com cache
 # ---------------------------------------------------------------------------
 
-@st.cache_resource(show_spinner="Carregando modelo Markov...")
+@st.cache_resource(show_spinner="Carregando modelo...")
 def carregar_modelo():
-    from poc.markov import ModeloMarkov
-    caminho = RAIZ / "modelos" / "markov_modelo.pkl"
+    import torch
+    from modelo.rede import MelodiaLSTM
+
+    caminho = RAIZ / "modelos" / "lstm_melodia.pt"
     if not caminho.exists():
         return None
-    modelo = ModeloMarkov()
-    modelo.carregar(caminho)
-    return modelo
+    checkpoint = torch.load(caminho, map_location="cpu", weights_only=False)
+    cfg = checkpoint["config"]
+    token_para_id = checkpoint["token_para_id"]
+    rede = MelodiaLSTM(
+        vocabulario=len(token_para_id),
+        embedding=int(cfg["embedding"]),
+        oculto=int(cfg["oculto"]),
+        camadas=int(cfg["camadas"]),
+        dropout=float(cfg["dropout"]),
+        pad_id=token_para_id["<PAD>"],
+    )
+    rede.load_state_dict(checkpoint["state_dict"])
+    rede.eval()
+    return {
+        "rede": rede,
+        "token_para_id": token_para_id,
+        "id_para_token": checkpoint["id_para_token"],
+    }
 
 # ---------------------------------------------------------------------------
 # Player MIDI em JavaScript (fallback sem FluidSynth)
@@ -63,24 +80,76 @@ def exibir_player_js(caminho_mid: str) -> None:
                background:#4CAF50;color:white;border:none;border-radius:6px;">
         ▶ Play
       </button>
-      <span id="status" style="margin-left:12px;color:#888;">Pronto</span>
+      <span id="status" style="margin-left:12px;color:#888;">Carregando instrumentos...</span>
     </div>
     <script>
       var Player = new MidiPlayer.Player(function(event) {{}});
       var ac = new AudioContext();
-      var instrument;
+      var sons = {{}};
+      var programas = {{}};
+      var ativos = {{}};
+      var pronto = false;
 
-      Soundfont.instrument(ac, 'acoustic_grand_piano').then(function(piano) {{
-        instrument = piano;
-        Player.on('midiEvent', function(event) {{
-          if (event.name === 'Note on' && event.velocity > 0) {{
-            instrument.play(event.noteNumber, ac.currentTime, {{gain: event.velocity / 127}});
-          }}
+      function nomeDoPrograma(programa) {{
+        if (programa === 4) return 'epiano';
+        if (programa >= 16 && programa <= 18) return 'organ';
+        if (programa === 32) return 'bassAcoustic';
+        if (programa === 33 || programa === 34) return 'bass';
+        if (programa === 89 || programa === 48) return 'pad';
+        return 'piano';
+      }}
+
+      function escolher(event) {{
+        var canal = event.channel;
+        if (canal === 9 || canal === 10) return sons.drums;
+        var programa = programas[canal];
+        return sons[nomeDoPrograma(programa)] || sons.piano;
+      }}
+
+      function aoEvento(event) {{
+        if (event.name === 'Program Change') {{
+          programas[event.channel] = event.value !== undefined ? event.value : event.number;
+          return;
+        }}
+        var ligar = event.name === 'Note on' && event.velocity > 0;
+        var desligar = event.name === 'Note off' || (event.name === 'Note on' && event.velocity === 0);
+        var chave = event.channel + '-' + event.noteNumber;
+        if (ligar) {{
+          var inst = escolher(event);
+          if (!inst) return;
+          ativos[chave] = inst.play(event.noteNumber, ac.currentTime, {{
+            gain: Math.max(0.15, event.velocity / 127)
+          }});
+        }} else if (desligar && ativos[chave] && ativos[chave].stop) {{
+          ativos[chave].stop(ac.currentTime + 0.02);
+          delete ativos[chave];
+        }}
+      }}
+
+      Player.on('midiEvent', aoEvento);
+      Player.on('endOfFile', function() {{
+        document.getElementById('btn-play').innerText = '▶ Play';
+        document.getElementById('status').innerText = 'Concluído';
+      }});
+
+      var pedidos = [
+        ['piano', 'acoustic_grand_piano'],
+        ['organ', 'rock_organ'],
+        ['bassAcoustic', 'acoustic_bass'],
+        ['bass', 'electric_bass_finger'],
+        ['epiano', 'electric_piano_1'],
+        ['pad', 'pad_2_warm'],
+        ['drums', 'synth_drum']
+      ];
+      Promise.all(pedidos.map(function(par) {{
+        return Soundfont.instrument(ac, par[1], {{ soundfont: 'MusyngKite' }}).then(function(inst) {{
+          sons[par[0]] = inst;
         }});
-        Player.on('endOfFile', function() {{
-          document.getElementById('btn-play').innerText = '▶ Play';
-          document.getElementById('status').innerText = 'Concluído';
-        }});
+      }})).then(function() {{
+        pronto = true;
+        document.getElementById('status').innerText = 'Pronto';
+      }}).catch(function() {{
+        document.getElementById('status').innerText = 'Não foi possível carregar os instrumentos';
       }});
 
       var midiData = atob("{midi_b64}");
@@ -91,6 +160,8 @@ def exibir_player_js(caminho_mid: str) -> None:
       Player.loadArrayBuffer(bytes.buffer);
 
       function togglePlay() {{
+        if (!pronto) return;
+        ac.resume();
         if (Player.isPlaying()) {{
           Player.pause();
           document.getElementById('btn-play').innerText = '▶ Play';
@@ -103,21 +174,21 @@ def exibir_player_js(caminho_mid: str) -> None:
       }}
     </script>
     """
-    st.components.v1.html(html, height=80)
+    st.components.v1.html(html, height=90)
 
 # ---------------------------------------------------------------------------
 # Interface
 # ---------------------------------------------------------------------------
 
 st.title("🎵 Gerador de Melodias — Projeto B6")
-st.caption("Projeto Integrador VI — 2026 | Motor: Cadeia de Markov (ordem 2)")
+st.caption("Projeto Integrador VI — 2026 | Motores: LSTM no Lakh e midi-model do SkyTNT")
 
 modelo = carregar_modelo()
 
 if modelo is None:
     st.error(
-        "Modelo não encontrado em `modelos/markov_modelo.pkl`.\n\n"
-        "Execute primeiro:\n```\npython poc/treinar_markov.py\n```"
+        "Modelo não encontrado em `modelos/lstm_melodia.pt`.\n\n"
+        "Execute primeiro:\n```\npython scripts/06_treinar_lstm.py\n```"
     )
     st.stop()
 
@@ -127,6 +198,13 @@ if modelo is None:
 
 with st.sidebar:
     st.header("🎛️ Parâmetros")
+
+    motor = st.selectbox(
+        "Motor",
+        options=["LSTM", "SkyTNT"],
+        index=0,
+        help="LSTM é a rede treinada aqui. SkyTNT é um Transformer de MIDI já treinado.",
+    )
 
     tonalidade = st.selectbox(
         "Tonalidade",
@@ -150,39 +228,84 @@ with st.sidebar:
         step=5,
     )
 
-    gerar = st.button("🎵 Gerar Melodia", use_container_width=True, type="primary")
+    temperatura = st.slider(
+        "Variação",
+        min_value=0.5,
+        max_value=1.4,
+        value=0.9,
+        step=0.1,
+        help="Valores menores repetem padrões com mais frequência. Valores maiores variam mais.",
+    )
+
+    if motor == "LSTM":
+        estilo = st.selectbox(
+            "Estilo do arranjo",
+            options=["Pop", "Rock", "Balada"],
+            index=0,
+            help="Define bateria, baixo e acorde em volta da melodia.",
+        )
+    else:
+        estilo = "SkyTNT"
+        st.caption("No SkyTNT os instrumentos saem do modelo. A primeira geração carrega os pesos e pode levar cerca de um minuto.")
+
+    gerar = st.button("🎵 Gerar música", use_container_width=True, type="primary")
 
 # ---------------------------------------------------------------------------
 # Geração
 # ---------------------------------------------------------------------------
 
 if gerar:
-    with st.spinner("Gerando melodia..."):
-        # Estimar tokens necessários: ~2 notas/s × 2 tokens/nota
-        num_tokens_alvo = int(duracao * 2 * 2)
-
-        tokens = modelo.gerar(num_tokens=num_tokens_alvo)
-        tokens = filtrar_tokens_por_tonalidade(tokens, tonalidade)
-        tokens = limitar_duracao(tokens, bpm, float(duracao))
-
-        caminho_mid = str(RAIZ / "poc" / "saida_temp" / "melodia.mid")
+    aviso = "Gerando com o midi-model..." if motor == "SkyTNT" else "Gerando música..."
+    with st.spinner(aviso):
+        st.session_state["geracao"] = st.session_state.get("geracao", 0) + 1
+        caminho_mid = str(RAIZ / "poc" / "saida_temp" / f"melodia_{st.session_state['geracao']}.mid")
         os.makedirs(os.path.dirname(caminho_mid), exist_ok=True)
-        tokens_para_midi(tokens, bpm, caminho_mid)
+
+        if motor == "SkyTNT":
+            from poc.skytnt_pedido import pedir_geracao
+
+            try:
+                st.session_state["resumo"] = pedir_geracao(
+                    tonalidade, bpm, float(duracao), float(temperatura), caminho_mid
+                )
+            except Exception as exc:
+                st.error(f"Não foi possível gerar com o SkyTNT: {exc}")
+                st.stop()
+            st.session_state["tokens"] = []
+        else:
+            from modelo.rede import gerar as gerar_tokens
+            from poc.arranjo import salvar_musica
+
+            num_tokens_alvo = min(2500, int(duracao / 0.03) + 32)
+            tokens = gerar_tokens(
+                modelo["rede"],
+                modelo["token_para_id"],
+                modelo["id_para_token"],
+                num_tokens=num_tokens_alvo,
+                temperatura=float(temperatura),
+                parar_no_fim=False,
+            )
+            tokens = transpor_tokens_para_tonalidade(tokens, tonalidade)
+            tokens = limitar_duracao(tokens, bpm, float(duracao))
+            salvar_musica(tokens, tonalidade, bpm, float(duracao), estilo, caminho_mid)
+            st.session_state["resumo"] = None
+            st.session_state["tokens"] = tokens
 
         caminho_wav = renderizar(caminho_mid)
-
         st.session_state["melodia_mid"] = caminho_mid
         st.session_state["melodia_wav"] = caminho_wav
-        st.session_state["tokens"] = tokens
         st.session_state["bpm"] = bpm
         st.session_state["tonalidade"] = tonalidade
+        st.session_state["temperatura"] = temperatura
+        st.session_state["estilo"] = estilo
+        st.session_state["motor"] = motor
 
 # ---------------------------------------------------------------------------
 # Área de resultado
 # ---------------------------------------------------------------------------
 
 if "melodia_mid" in st.session_state:
-    st.subheader("🎼 Melodia Gerada")
+    st.subheader("🎼 Música gerada")
 
     col1, col2 = st.columns([2, 1])
 
@@ -195,8 +318,8 @@ if "melodia_mid" in st.session_state:
                 st.audio(f.read(), format="audio/wav")
         else:
             st.info(
-                "FluidSynth não disponível — usando player JavaScript. "
-                "Clique em ▶ Play abaixo."
+                "FluidSynth não disponível — o player da página toca "
+                "melodia, acorde, baixo e bateria. Clique em ▶ Play abaixo."
             )
             exibir_player_js(mid)
 
@@ -210,22 +333,32 @@ if "melodia_mid" in st.session_state:
                 data=f,
                 file_name=nome_arquivo,
                 mime="audio/midi",
+                key=f"download_{st.session_state.get('geracao', 0)}",
             )
 
     with col2:
         st.subheader("📊 Detalhes")
-        tokens = st.session_state["tokens"]
+        resumo = st.session_state.get("resumo")
+        tokens = st.session_state.get("tokens") or []
         notas = [t for t in tokens if t.startswith("NOTE_")]
 
-        st.metric("Notas geradas", len(notas))
+        st.metric("Motor", st.session_state.get("motor", "LSTM"))
+        st.metric("Notas geradas", resumo["notas"] if resumo else len(notas))
         st.metric("BPM", st.session_state["bpm"])
         st.metric("Tonalidade", st.session_state["tonalidade"])
-        st.metric("Total de tokens", len(tokens))
-
-        if notas:
-            pitches = [int(t.split("_")[1]) for t in notas]
-            st.metric("Nota mais grave", pitch_para_nome(min(pitches)))
-            st.metric("Nota mais aguda", pitch_para_nome(max(pitches)))
+        st.metric("Estilo", st.session_state.get("estilo", "Pop"))
+        st.metric("Variação", f"{st.session_state.get('temperatura', 0.9):.1f}")
+        if resumo:
+            st.caption(resumo["faixas"])
+            if resumo["grave"] is not None:
+                st.metric("Nota mais grave", pitch_para_nome(resumo["grave"]))
+                st.metric("Nota mais aguda", pitch_para_nome(resumo["aguda"]))
+        else:
+            st.metric("Total de tokens", len(tokens))
+            if notas:
+                pitches = [int(t.split("_")[1]) for t in notas]
+                st.metric("Nota mais grave", pitch_para_nome(min(pitches)))
+                st.metric("Nota mais aguda", pitch_para_nome(max(pitches)))
 
 # ---------------------------------------------------------------------------
 # Rodapé
@@ -234,6 +367,6 @@ if "melodia_mid" in st.session_state:
 st.divider()
 st.caption(
     "Projeto B6 — SI-PI6-2026-G06 | Projeto Integrador VI — 2026 | "
-    "Motor de geração: Cadeia de Markov (ordem 2) | "
+    "Motores: LSTM + arranjo, e midi-model (SkyTNT, Apache 2.0) | "
     "Dados: Lakh MIDI Dataset (CC BY 4.0)"
 )

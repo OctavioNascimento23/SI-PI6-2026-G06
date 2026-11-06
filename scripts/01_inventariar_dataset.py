@@ -1,100 +1,40 @@
 """
 Script 01 — Inventariar o dataset
-Percorre todos os MIDIs e registra metadados básicos sem nenhuma filtragem.
+Percorre os MIDIs e registra metadados. Retoma do CSV se a execução anterior parou.
 """
 
-import json
-import csv
+import argparse
+import time
 from pathlib import Path
 
-import pretty_midi
-import yaml
 from tqdm import tqdm
 
+from comum import (
+    analisar_midi,
+    abrir_csv,
+    carregar_config,
+    carregar_md5_map,
+    executar_pool,
+    md5s_no_csv,
+    primeiro_nome,
+)
 
-def carregar_config():
-    raiz = Path(__file__).resolve().parent.parent
-    with open(raiz / "configuracao" / "pipeline.yaml", encoding="utf-8") as f:
-        return yaml.safe_load(f), raiz
+CAMPOS = [
+    "caminho_relativo", "md5", "nome_original", "tamanho_bytes",
+    "abre_sem_erro", "erro_leitura", "duracao_seg", "num_faixas",
+    "num_instrumentos", "tem_bateria", "num_notas_total",
+    "bpm_predominante", "num_mudancas_tempo", "faixas_info",
+]
 
 
-def carregar_md5_map(arquivo_md5):
-    if arquivo_md5.exists():
-        with open(arquivo_md5, encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-
-def analisar_midi(caminho, raiz, md5_map):
-    md5 = caminho.stem
-    nome_original = ""
-    if md5 in md5_map:
-        nomes = md5_map[md5]
-        nome_original = "; ".join(nomes) if isinstance(nomes, list) else str(nomes)
-
-    registro = {
-        "caminho_relativo": str(caminho.relative_to(raiz)),
-        "md5": md5,
-        "nome_original": nome_original,
-        "tamanho_bytes": caminho.stat().st_size,
-        "abre_sem_erro": False,
-        "erro_leitura": "",
-        "duracao_seg": 0.0,
-        "num_faixas": 0,
-        "num_instrumentos": 0,
-        "tem_bateria": False,
-        "num_notas_total": 0,
-        "bpm_predominante": 0.0,
-        "num_mudancas_tempo": 0,
-        "faixas_info": "[]",
-    }
-
-    try:
-        midi = pretty_midi.PrettyMIDI(str(caminho))
-
-        registro["abre_sem_erro"] = True
-        registro["duracao_seg"] = round(midi.get_end_time(), 3)
-        registro["num_faixas"] = len(midi.instruments)
-
-        programas_unicos = set()
-        tem_bateria = False
-        num_notas_total = 0
-        faixas_info = []
-
-        for instrumento in midi.instruments:
-            programas_unicos.add(int(instrumento.program))
-            if instrumento.is_drum:
-                tem_bateria = True
-            num_notas_total += len(instrumento.notes)
-            faixas_info.append({
-                "nome": instrumento.name,
-                "programa": int(instrumento.program),
-                "is_drum": bool(instrumento.is_drum),
-                "num_notas": int(len(instrumento.notes)),
-            })
-
-        registro["num_instrumentos"] = len(programas_unicos)
-        registro["tem_bateria"] = tem_bateria
-        registro["num_notas_total"] = num_notas_total
-        registro["faixas_info"] = json.dumps(faixas_info, ensure_ascii=False)
-
-        # BPM e mudanças de tempo
-        tempos = midi.get_tempo_changes()
-        if len(tempos[1]) > 0:
-            registro["bpm_predominante"] = round(float(tempos[1][0]), 2)
-            registro["num_mudancas_tempo"] = len(tempos[1])
-        else:
-            registro["bpm_predominante"] = 120.0
-            registro["num_mudancas_tempo"] = 0
-
-    except Exception as e:
-        registro["abre_sem_erro"] = False
-        registro["erro_leitura"] = str(e)[:300]
-
-    return registro
+def argumentos():
+    parser = argparse.ArgumentParser(description="Inventariar MIDIs do LMD-full")
+    parser.add_argument("--limite", type=int, default=None, help="Processa só N arquivos novos")
+    return parser.parse_args()
 
 
 def main():
+    args = argumentos()
     cfg, raiz = carregar_config()
     pasta_lmd = raiz / cfg["dataset"]["pasta_lmd_full"]
     arquivo_md5 = raiz / cfg["dataset"]["arquivo_md5_json"]
@@ -102,38 +42,71 @@ def main():
     pasta_relatorios = raiz / cfg["saidas"]["pasta_relatorios"]
     pasta_relatorios.mkdir(parents=True, exist_ok=True)
 
-    piloto_ativo = cfg["piloto"]["ativo"]
-    piloto_qtd = cfg["piloto"]["quantidade"]
+    trabalhadores = int(cfg["execucao"]["trabalhadores"])
+    retomada = bool(cfg["execucao"]["retomada"])
+    lote = int(cfg["execucao"]["lote_gravacao"])
+    piloto_ativo = bool(cfg["piloto"]["ativo"])
+    piloto_qtd = int(cfg["piloto"]["quantidade"])
 
+    print("Carregando mapa MD5...")
     md5_map = carregar_md5_map(arquivo_md5)
     print(f"md5_map carregado: {len(md5_map)} entradas")
 
-    todos_midis = sorted(p for p in pasta_lmd.rglob("*") if p.suffix.lower() in extensoes)
-
+    print(f"Listando MIDIs em {pasta_lmd}...")
+    todos = sorted(
+        p for p in pasta_lmd.rglob("*") if p.suffix.lower() in extensoes
+    )
     if piloto_ativo:
-        todos_midis = todos_midis[:piloto_qtd]
-        print(f"[PILOTO] Processando {len(todos_midis)} arquivos.")
+        todos = todos[:piloto_qtd]
+        print(f"[PILOTO] Universo limitado a {len(todos)} arquivos.")
     else:
-        print(f"Processando {len(todos_midis)} arquivos.")
-
-    campos = [
-        "caminho_relativo", "md5", "nome_original", "tamanho_bytes",
-        "abre_sem_erro", "erro_leitura", "duracao_seg", "num_faixas",
-        "num_instrumentos", "tem_bateria", "num_notas_total",
-        "bpm_predominante", "num_mudancas_tempo", "faixas_info",
-    ]
+        print(f"Arquivos encontrados: {len(todos)}")
 
     caminho_csv = pasta_relatorios / "inventario.csv"
-    with open(caminho_csv, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=campos)
-        writer.writeheader()
+    feitos = md5s_no_csv(caminho_csv) if retomada else set()
+    pendentes = [p for p in todos if p.stem not in feitos]
+    if args.limite is not None:
+        pendentes = pendentes[: args.limite]
 
-        for caminho in tqdm(todos_midis, desc="Inventariando"):
-            registro = analisar_midi(caminho, raiz, md5_map)
+    print(f"Já inventariados: {len(feitos)}")
+    print(f"Pendentes nesta execução: {len(pendentes)}")
+    if not pendentes:
+        print(f"Nada a fazer. Inventário em {caminho_csv.relative_to(raiz)}")
+        return
+
+    raiz_str = str(raiz)
+    tarefas = ((str(p), raiz_str) for p in pendentes)
+    arquivo, writer = abrir_csv(caminho_csv, CAMPOS, retomada=retomada and bool(feitos))
+
+    inicio = time.perf_counter()
+    gravados = 0
+    try:
+        for registro in tqdm(
+            executar_pool(analisar_midi, tarefas, trabalhadores),
+            total=len(pendentes),
+            desc="Inventariando",
+        ):
+            registro["nome_original"] = primeiro_nome(md5_map, registro["md5"])
             writer.writerow(registro)
+            gravados += 1
+            if gravados % lote == 0:
+                arquivo.flush()
+            if gravados % 5000 == 0:
+                decorrido = time.perf_counter() - inicio
+                taxa = gravados / decorrido if decorrido else 0
+                print(
+                    f"\n{gravados} novos | {len(feitos) + gravados} no total | {taxa:.1f} arquivos/s",
+                    flush=True,
+                )
+    finally:
+        arquivo.flush()
+        arquivo.close()
 
-    print(f"\nInventário salvo em: {caminho_csv.relative_to(raiz)}")
-    print(f"Total de registros: {len(todos_midis)}")
+    elapsed = time.perf_counter() - inicio
+    taxa = gravados / elapsed if elapsed else 0
+    print(f"\nInventário atualizado: {caminho_csv.relative_to(raiz)}")
+    print(f"Novos registros: {gravados} em {elapsed:.1f}s ({taxa:.1f} arquivos/s)")
+    print(f"Total no CSV: {len(feitos) + gravados}")
 
 
 if __name__ == "__main__":

@@ -49,6 +49,38 @@ def transpor_pitch(pitch: int, tonalidade: str) -> int:
     return pitch  # nunca deve chegar aqui com escala de 7 notas
 
 
+def semitons_da_tonalidade(nome_tonalidade: str) -> int:
+    """Deslocamento da melodia canônica (Dó maior ou Lá menor) até a tonalidade pedida."""
+    tonica = ESCALAS[nome_tonalidade][0]
+    origem = 9 if nome_tonalidade.endswith("Menor") else 0
+    semitons = (tonica - origem) % 12
+    if semitons > 6:
+        semitons -= 12
+    return semitons
+
+
+def transpor_tokens_para_tonalidade(
+    tokens: list[str],
+    tonalidade: str,
+    pitch_min: int = 36,
+    pitch_max: int = 96,
+) -> list[str]:
+    """Transpõe as notas geradas para a tonalidade do usuário, mantendo o intervalo de treino."""
+    semitons = semitons_da_tonalidade(tonalidade)
+    resultado = []
+    for tok in tokens:
+        if not tok.startswith("NOTE_"):
+            resultado.append(tok)
+            continue
+        novo = int(tok.split("_")[1]) + semitons
+        while novo > pitch_max:
+            novo -= 12
+        while novo < pitch_min:
+            novo += 12
+        resultado.append(f"NOTE_{novo}")
+    return resultado
+
+
 def filtrar_tokens_por_tonalidade(tokens: list[str], tonalidade: str) -> list[str]:
     """
     Percorre a lista de tokens e substitui NOTE_X cujo pitch não está na escala
