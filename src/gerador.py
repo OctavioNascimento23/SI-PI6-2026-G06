@@ -51,14 +51,21 @@ class GeradorMusical:
         self.modelo_transformer: Optional[Any] = None
 
     def _carregar_vocabulario(self) -> None:
-        if self.caminho_vocab.exists():
-            try:
-                dados = json.loads(self.caminho_vocab.read_text(encoding="utf-8"))
-                self.vocabulario = dados
-                self.token_para_id = dados.get("token_para_id", {})
-                self.id_para_token = dados.get("id_para_token", {})
-            except Exception as e:
-                print(f"Aviso ao carregar vocabulário: {e}")
+        # Prioriza o vocabulário dentro de modelos/ (específico do checkpoint treinado)
+        caminhos = [
+            self.pasta_modelos / "vocabulario.json",
+            self.caminho_vocab,
+        ]
+        for p in caminhos:
+            if p.exists():
+                try:
+                    dados = json.loads(p.read_text(encoding="utf-8"))
+                    self.vocabulario = dados
+                    self.token_para_id = dados.get("token_para_id", {})
+                    self.id_para_token = dados.get("id_para_token", {})
+                    break
+                except Exception as e:
+                    print(f"Aviso ao carregar vocabulário ({p}): {e}")
 
     def carregar_markov(self) -> Optional[ModeloMarkov]:
         if self.modelo_markov is None:
@@ -84,6 +91,8 @@ class GeradorMusical:
     def carregar_transformer(self) -> Optional[Any]:
         if MusicTransformer is None:
             return None
+        if not self.vocabulario:
+            self._carregar_vocabulario()
         if self.modelo_transformer is None:
             caminho = self.pasta_modelos / "modelo_transformer.pt"
             if caminho.exists():

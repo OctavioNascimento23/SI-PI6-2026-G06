@@ -75,18 +75,22 @@ MAPA_GRAUS_MENOR = {
 }
 
 
-def obter_notas_acorde(tonica_pitch: int, qualidade: str, oitava: int = 4) -> List[int]:
+def obter_notas_acorde(tonica_pitch: int, qualidade: str, oitava: int = 3) -> List[int]:
     """
-    Retorna os pitches MIDI (tríade) de um acorde em uma oitava específica (padrão C4 = 60).
+    Retorna os pitches MIDI com abertura harmônica de piano (baixo + harmonia):
+    - Baixo: Tônica na oitava grave (ex: C2/C3 = 36..48)
+    - Harmonia: Tríade com abertura suave (ex: 3ª e 5ª)
     """
-    raiz = (oitava + 1) * 12 + (tonica_pitch % 12)
+    baixo = 36 + (tonica_pitch % 12)
+    raiz_media = 48 + (tonica_pitch % 12)
+    
     if qualidade == "maj":
-        return [raiz, raiz + 4, raiz + 7]  # Fundamental, 3ª maior, 5ª justa
+        return [baixo, raiz_media + 4, raiz_media + 7, raiz_media + 12]
     elif qualidade == "min":
-        return [raiz, raiz + 3, raiz + 7]  # Fundamental, 3ª menor, 5ª justa
+        return [baixo, raiz_media + 3, raiz_media + 7, raiz_media + 12]
     elif qualidade == "dim":
-        return [raiz, raiz + 3, raiz + 6]  # Fundamental, 3ª menor, 5ª diminuta
-    return [raiz, raiz + 4, raiz + 7]
+        return [baixo, raiz_media + 3, raiz_media + 6, raiz_media + 12]
+    return [baixo, raiz_media + 4, raiz_media + 7, raiz_media + 12]
 
 
 def gerar_progressao_acordes(tonalidade: str, estilo_progressao: str, duracao_seg: float, bpm: int) -> List[Dict]:

@@ -1,0 +1,46 @@
+{
+  "vocabulario_tamanho": 74,
+  "seq_len": 128,
+  "treino": {
+    "tokens_avaliados": 6771940,
+    "perda_cross_entropy": 1.3292,
+    "perplexidade": 3.778,
+    "acuracia": 0.6038,
+    "acuracia_top5": 0.8939,
+    "precisao_macro": 0.5159,
+    "recall_macro": 0.4967,
+    "f1_macro": 0.5051,
+    "auc_roc_macro_ovr": 0.9769,
+    "classes_com_auc": 72,
+    "tokens_amostra_auc": 338456,
+    "janelas": 52964
+  },
+  "validacao": {
+    "tokens_avaliados": 873012,
+    "perda_cross_entropy": 1.3143,
+    "perplexidade": 3.7222,
+    "acuracia": 0.6049,
+    "acuracia_top5": 0.8969,
+    "precisao_macro": 0.5019,
+    "recall_macro": 0.4826,
+    "f1_macro": 0.4908,
+    "auc_roc_macro_ovr": 0.9766,
+    "classes_com_auc": 72,
+    "tokens_amostra_auc": 43732,
+    "janelas": 6828
+  },
+  "teste": {
+    "tokens_avaliados": 809728,
+    "perda_cross_entropy": 1.3276,
+    "perplexidade": 3.772,
+    "acuracia": 0.6013,
+    "acuracia_top5": 0.8951,
+    "precisao_macro": 0.5029,
+    "recall_macro": 0.4832,
+    "f1_macro": 0.4916,
+    "auc_roc_macro_ovr": 0.9766,
+    "classes_com_auc": 71,
+    "tokens_amostra_auc": 40486,
+    "janelas": 6334
+  }
+}

@@ -5,7 +5,7 @@ dataset:
 
 piloto:
   ativo: true           # true = processar apenas N arquivos para teste
-  quantidade: 5000      # aumentar para 5000 depois de validar o pipeline
+  quantidade: 100000    # piloto ampliado para 100 mil arquivos MIDI
 
 filtros:
   notas_minimas: 32

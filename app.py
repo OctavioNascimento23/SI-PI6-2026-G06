@@ -31,11 +31,14 @@ st.set_page_config(
 # Inicialização do Gerador com Cache
 # ---------------------------------------------------------------------------
 
-@st.cache_resource(show_spinner="Carregando motor de composição musical...")
+@st.cache_resource
 def obter_gerador():
     return GeradorMusical(raiz_projeto=RAIZ)
 
 gerador = obter_gerador()
+# Força a verificação e recarregamento caso novos modelos tenham sido colocados
+if gerador.modelo_transformer is None and (RAIZ / "modelos" / "modelo_transformer.pt").exists():
+    gerador.carregar_transformer()
 
 # ---------------------------------------------------------------------------
 # Sidebar — Controles e Parâmetros
@@ -102,6 +105,10 @@ with st.sidebar:
 
     st.divider()
     btn_gerar = st.button("✨ Compor Música com IA", use_container_width=True, type="primary")
+    
+    if st.button("🔄 Recarregar Motor e Modelos", use_container_width=True):
+        st.cache_resource.clear()
+        st.rerun()
 
 
 # ---------------------------------------------------------------------------

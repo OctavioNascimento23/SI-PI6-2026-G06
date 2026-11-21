@@ -169,7 +169,10 @@ def treinar(args):
 
         if media_val_loss < melhor_val_loss:
             melhor_val_loss = media_val_loss
-            modelo.salvar(caminho_salvar)
+            if args.modelo == "transformer":
+                modelo.salvar(caminho_salvar, vocabulario=vocab_data)
+            else:
+                modelo.salvar(caminho_salvar)
             print(f"  ★ Melhor modelo salvo em: {caminho_salvar.relative_to(RAIZ)}")
 
     print("\nTreinamento Concluído!")
