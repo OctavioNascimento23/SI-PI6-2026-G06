@@ -1,0 +1,3 @@
+﻿Coloque aqui os dois videos da demonstracao:
+  video1_geracao.mp4  (slide 12: gerando a composicao no sistema)
+  video2_daw.mp4      (slide 13: aplicando o MIDI na DAW)
