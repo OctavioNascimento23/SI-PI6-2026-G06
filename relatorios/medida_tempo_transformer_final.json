@@ -1,0 +1,38 @@
+{
+  "modelo": "transformer",
+  "rotulo": "final",
+  "n": 20,
+  "cobertura_media_da_duracao": 0.961,
+  "trechos": {
+    "1o quarto": {
+      "notas": 306,
+      "no_beat_%": 63.1,
+      "inicio_compasso_%": 23.2,
+      "fora_de_1/4_%": 0.0
+    },
+    "2o quarto": {
+      "notas": 318,
+      "no_beat_%": 53.5,
+      "inicio_compasso_%": 17.3,
+      "fora_de_1/4_%": 0.0
+    },
+    "3o quarto": {
+      "notas": 309,
+      "no_beat_%": 51.5,
+      "inicio_compasso_%": 16.2,
+      "fora_de_1/4_%": 0.0
+    },
+    "4o quarto": {
+      "notas": 254,
+      "no_beat_%": 55.5,
+      "inicio_compasso_%": 12.2,
+      "fora_de_1/4_%": 0.0
+    },
+    "TOTAL": {
+      "notas": 1187,
+      "no_beat_%": 55.9,
+      "inicio_compasso_%": 17.4,
+      "fora_de_1/4_%": 0.0
+    }
+  }
+}

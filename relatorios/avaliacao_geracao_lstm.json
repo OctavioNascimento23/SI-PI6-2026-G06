@@ -1,0 +1,29 @@
+{
+  "A) vocab antigo (74), sem guia  [estado original do app]": {
+    "frac_notas_no_acorde": 0.491,
+    "frac_forte_no_acorde": 0.342,
+    "frac_notas_na_escala": 0.9,
+    "alturas_distintas": 4.9,
+    "amplitude_semitons": 26.4,
+    "pct_repeticoes_consecutivas": 0.232,
+    "n_notas": 9.6
+  },
+  "B) vocab do checkpoint (140), sem guia": {
+    "frac_notas_no_acorde": 0.457,
+    "frac_forte_no_acorde": 0.592,
+    "frac_notas_na_escala": 1.0,
+    "alturas_distintas": 8.05,
+    "amplitude_semitons": 15.2,
+    "pct_repeticoes_consecutivas": 0.15,
+    "n_notas": 29.6
+  },
+  "C) vocab do checkpoint (140), com guia harmonico": {
+    "frac_notas_no_acorde": 0.795,
+    "frac_forte_no_acorde": 0.939,
+    "frac_notas_na_escala": 1.0,
+    "alturas_distintas": 10.05,
+    "amplitude_semitons": 19.1,
+    "pct_repeticoes_consecutivas": 0.049,
+    "n_notas": 36.65
+  }
+}

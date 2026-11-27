@@ -1,0 +1,25 @@
+{
+  "piloto_quantidade": 100000,
+  "arquivos_entrada": 100000,
+  "descartes": {
+    "arquivo_minimo": 432,
+    "corrompido": 2233,
+    "sem_notas": 22,
+    "curto_demais": 3311,
+    "longo_demais": 888,
+    "sem_faixa": 354,
+    "notas_insuficientes": 706,
+    "notas_excessivas": 494,
+    "melodia_plana": 4136
+  },
+  "tamanho_bloco": 2000,
+  "blocos": 50,
+  "origem": "pipeline",
+  "divisao": {
+    "treino": 69939,
+    "validacao": 8742,
+    "teste": 8743
+  },
+  "vocabulario_tamanho": 140,
+  "sequencias_aprovadas": 87424
+}

@@ -1,0 +1,368 @@
+/* ==========================================================================
+   Design system — Gerador de Melodias & Harmonias
+   Preset: Carbon (grafite escuro, elevação por degraus de superfície) + acento âmbar.
+   Assinatura: piano-roll da melodia alinhado à faixa de acordes.
+   Regras seguidas (ui-craft / emil-design-eng): um acento, hairlines em vez de
+   caixas pesadas, números tabulares, sem `transition: all`, hover só com mouse,
+   entrada única com opacity/clip-path, prefers-reduced-motion respeitado.
+   ========================================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --bg: #0e0f12;
+  --surface: #15171b;
+  --surface-2: #1b1e23;
+  --surface-3: #232730;
+  --line: #262a31;
+  --line-strong: #353a44;
+  --text: #ecedef;
+  --text-2: #b4b9c2;
+  --muted: #858c98;
+
+  --accent: #f0b44c;
+  --accent-ink: #1a1203;
+  --accent-soft: rgba(240, 180, 76, 0.12);
+  --ok: #6ec28f;
+  --warn: #e8905a;
+
+  --r-input: 6px;
+  --r-card: 10px;
+  --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+}
+
+/* ---------- Base ---------- */
+
+[data-testid="stHeader"] { background: transparent; }
+footer, [data-testid="stDecoration"] { display: none; }
+
+.block-container {
+  max-width: 1040px;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Valores numéricos dos sliders nunca quebram linha */
+[data-testid="stSliderThumbValue"],
+[data-testid="stSliderThumbValue"] p,
+[data-testid="stSliderTickBarMin"],
+[data-testid="stSliderTickBarMax"] {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Sidebar ---------- */
+
+[data-testid="stSidebar"] {
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+}
+[data-testid="stSidebar"][aria-expanded="true"] {
+  min-width: 330px;
+  max-width: 330px;
+}
+[data-testid="stSidebarUserContent"] { padding-top: 1rem; }
+
+.sb-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 650;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+}
+.sb-marca svg { flex: none; }
+
+.sb-grupo {
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--text);
+  margin: 0.6rem 0 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+[data-testid="stSidebar"] hr { border-color: var(--line); margin: 0.75rem 0; }
+[data-testid="stSidebar"] label p { font-size: 0.85rem; color: var(--text-2); }
+
+/* Ícone de ajuda: discreto, sem anel de foco chamativo */
+[data-testid="stTooltipIcon"] svg { color: var(--muted); }
+[data-testid="stTooltipHoverTarget"],
+[data-testid="stTooltipHoverTarget"]:focus,
+[data-testid="stTooltipHoverTarget"]:focus-visible { outline: none; box-shadow: none; }
+
+/* ---------- Hero ---------- */
+
+.hero { margin-bottom: 1.75rem; }
+.hero h1 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.12;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  text-wrap: balance;
+}
+.hero p {
+  max-width: 58ch;
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1.1rem;
+  text-wrap: pretty;
+}
+
+.motores { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.motor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.28rem 0.7rem 0.28rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+.motor::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+.motor.pendente::before { background: var(--warn); }
+.motor em { font-style: normal; color: var(--muted); }
+
+/* ---------- Seções ---------- */
+
+.secao {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.25rem 0 0.9rem;
+}
+.secao-titulo { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+.secao-nota { color: var(--muted); font-size: 0.82rem; }
+
+/* ---------- Métricas da composição ---------- */
+
+.metricas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem 1.75rem;
+  margin: 1.1rem 0 0;
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+}
+.metrica .rotulo { font-size: 0.76rem; color: var(--muted); }
+.metrica .valor {
+  margin-top: 0.15rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Piano-roll (assinatura) ---------- */
+
+.roll {
+  margin-top: 1.1rem;
+  padding: 1rem 1.2rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+}
+.roll-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.legenda { display: flex; gap: 1.1rem; }
+.legenda span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+
+.roll-corpo,
+.roll-acordes,
+.roll-tempo {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 10px;
+}
+.roll-acordes, .roll-tempo { margin-top: 8px; }
+
+.eixo-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.roll-acordes .eixo-y { justify-content: center; white-space: nowrap; }
+
+.roll-area {
+  position: relative;
+  height: 230px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.g-oitava { position: absolute; left: 0; right: 0; height: 1px; background: var(--line); }
+.g-compasso { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, 0.05); }
+
+.roll-notas { position: absolute; inset: 0; }
+.nota {
+  position: absolute;
+  min-height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.nota.passagem {
+  background: rgba(240, 180, 76, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(240, 180, 76, 0.55);
+}
+.sw.nota { position: static; min-height: 0; }
+
+.roll-notas.anim-a { animation: revelar-a 700ms var(--ease-out) both; }
+.roll-notas.anim-b { animation: revelar-b 700ms var(--ease-out) both; }
+@keyframes revelar-a { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes revelar-b { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+.faixa {
+  position: relative;
+  height: 46px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.bloco {
+  position: absolute;
+  top: 0; bottom: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: baseline;
+  align-content: center;
+  gap: 0.4rem;
+  padding: 0 0.6rem;
+  background: var(--surface-2);
+  border-right: 2px solid var(--bg);
+  white-space: nowrap;
+  overflow: hidden;
+  align-items: center;
+}
+.bloco:nth-child(even) { background: var(--surface-3); }
+.bloco span { font-weight: 650; font-size: 0.95rem; letter-spacing: -0.01em; }
+.bloco small { color: var(--muted); font-size: 0.72rem; }
+
+.marcas { position: relative; height: 16px; margin-right: 12px; }
+.marcas span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.marcas span:first-child { transform: none; }
+
+/* Estado vazio: esqueleto do piano-roll */
+.roll-vazio .roll-area { height: 210px; }
+.nota.fantasma { background: var(--line-strong); box-shadow: none; opacity: 0.7; }
+.vazio-texto {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.2rem;
+  padding: 1rem;
+  background: radial-gradient(ellipse at center, rgba(14, 15, 18, 0.88) 0%, rgba(14, 15, 18, 0.35) 70%);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.vazio-texto strong { color: var(--text); font-size: 1.05rem; font-weight: 600; }
+
+/* ---------- Widgets Streamlit ---------- */
+
+.stButton > button,
+.stDownloadButton > button {
+  border-radius: var(--r-input);
+  font-weight: 550;
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.stButton > button:active,
+.stDownloadButton > button:active { transform: scale(0.97); }
+
+.stButton > button[kind="primary"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.stButton > button[kind="primary"] p { color: var(--accent-ink); font-weight: 650; }
+
+@media (hover: hover) and (pointer: fine) {
+  .stButton > button[kind="primary"]:hover {
+    background: #f7c675;
+    border-color: #f7c675;
+    color: var(--accent-ink);
+  }
+  .stButton > button[kind="secondary"]:hover,
+  .stDownloadButton > button:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+[data-baseweb="select"] > div,
+[data-baseweb="input"] > div {
+  border-radius: var(--r-input);
+  transition: border-color 160ms ease;
+}
+
+[data-testid="stAudio"] audio { width: 100%; }
+
+[data-testid="stExpander"] details {
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+[data-testid="stAlert"] { border-radius: var(--r-card); }
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+  margin-top: 3.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+/* ---------- Movimento reduzido: mantém opacidade, remove deslocamento ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .roll-notas.anim-a { animation: fade-a 200ms ease both; }
+  .roll-notas.anim-b { animation: fade-b 200ms ease both; }
+  .stButton > button:active,
+  .stDownloadButton > button:active { transform: none; }
+}
+@keyframes fade-a { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-b { from { opacity: 0; } to { opacity: 1; } }

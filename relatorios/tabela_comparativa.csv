@@ -1,0 +1,8 @@
+modelo,loss_teste,perplexidade,acuracia,top5,precisao_macro,recall_macro,f1_macro,auc_roc_ovr
+transformer,1.170186,3.222591,0.643697,0.917801,0.447465,0.400317,0.417121,0.982159
+lstm,1.174741,3.237305,0.626853,0.917929,0.469265,0.370235,0.397991,0.9816
+
+fonte,n_notas,alturas_distintas,participacao_nota_dominante,amplitude_semitons,intervalo_medio_semitons,pct_repeticoes_consecutivas
+transformer,98.06,9.0,0.258806,16.8,4.741248,0.032449
+lstm,95.16,7.74,0.396108,11.84,1.548723,0.431319
+real (teste),426.254,18.842,0.230672,31.524,4.891692,0.221

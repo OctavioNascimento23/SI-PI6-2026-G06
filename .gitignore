@@ -4,9 +4,6 @@ arquivos_brutos/lmd_full/
 # Dados processados — não versionar
 dados_processados/
 
-# Modelos — não versionar
-modelos/
-
 # Python
 *.pyc
 __pycache__/
@@ -22,3 +19,7 @@ Thumbs.db
 
 # Bobito
 .bob/
+
+# Skills de agentes (instaladas via npx skills)
+.agents/
+skills-lock.json

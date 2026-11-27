@@ -1,0 +1,38 @@
+{
+  "modelo": "lstm",
+  "rotulo": "final",
+  "n": 20,
+  "cobertura_media_da_duracao": 0.592,
+  "trechos": {
+    "1o quarto": {
+      "notas": 624,
+      "no_beat_%": 31.7,
+      "inicio_compasso_%": 9.0,
+      "fora_de_1/4_%": 21.6
+    },
+    "2o quarto": {
+      "notas": 305,
+      "no_beat_%": 48.9,
+      "inicio_compasso_%": 13.1,
+      "fora_de_1/4_%": 3.0
+    },
+    "3o quarto": {
+      "notas": 130,
+      "no_beat_%": 57.7,
+      "inicio_compasso_%": 11.5,
+      "fora_de_1/4_%": 0.0
+    },
+    "4o quarto": {
+      "notas": 66,
+      "no_beat_%": 81.8,
+      "inicio_compasso_%": 18.2,
+      "fora_de_1/4_%": 0.0
+    },
+    "TOTAL": {
+      "notas": 1125,
+      "no_beat_%": 42.3,
+      "inicio_compasso_%": 10.9,
+      "fora_de_1/4_%": 12.8
+    }
+  }
+}

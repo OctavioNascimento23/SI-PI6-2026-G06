@@ -58,15 +58,22 @@ class MelodyLSTM(nn.Module):
         tokens_iniciais: Optional[List[str]] = None,
         device: str = "cpu",
         ajustar_logits: Optional[Callable] = None,
+        beats_alvo: Optional[float] = None,
+        penalidade_repeticao: float = 1.0,
     ) -> List[str]:
         """
         Gera sequências de tokens musicais utilizando amostragem com temperatura e Top-K.
+        Se `beats_alvo` for dado, continua gerando até a melodia cobrir essa duração
+        (`num_tokens` passa a ser só um teto de segurança).
         """
         self.eval()
         self.to(device)
 
         start_id = token_para_id.get("<START>", 0)
         pad_id = token_para_id.get("<PAD>", 0)
+        # Durações de 1/8 de beat (gravadas como "0.12"): sem penalidade o modelo escolhe sequências
+        # delas e a melodia termina muito antes da duração pedida (mesma proteção do Transformer)
+        id_dur_min = token_para_id.get("DURATION_0.12")
 
         if tokens_iniciais:
             ids_historico = [token_para_id.get(t, start_id) for t in tokens_iniciais]
@@ -85,7 +92,16 @@ class MelodyLSTM(nn.Module):
             ultimo_foi_nota = t.startswith("NOTE_")
 
         for _ in range(num_tokens):
+            if beats_alvo is not None and tempo_beats >= beats_alvo:
+                break
             last_logits = logits[:, -1, :].clone()
+            if id_dur_min is not None:
+                last_logits[0, id_dur_min] -= 2.0
+            # Sem isso a LSTM trava na mesma nota; penaliza só notas recentes (durações ficam intactas)
+            if penalidade_repeticao > 0:
+                for t in tokens_gerados[-8:]:
+                    if t.startswith("NOTE_"):
+                        last_logits[0, token_para_id[t]] -= penalidade_repeticao
             # Guia externo (harmonia e ritmo): o guia sabe, pelos tokens, se espera nota ou duração
             if ajustar_logits is not None:
                 last_logits[0] = ajustar_logits(last_logits[0], tempo_beats, tokens_gerados)
@@ -111,7 +127,8 @@ class MelodyLSTM(nn.Module):
 
             tokens_gerados.append(tok_str)
             if tok_str.startswith(("DURATION_", "REST_")):
-                tempo_beats += float(tok_str.split("_")[1])
+                valor = float(tok_str.split("_")[1])
+                tempo_beats += 0.125 if valor == 0.12 else valor
             ultimo_foi_nota = tok_str.startswith("NOTE_")
 
 

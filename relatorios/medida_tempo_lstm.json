@@ -1,0 +1,38 @@
+{
+  "modelo": "lstm",
+  "rotulo": "",
+  "n": 20,
+  "cobertura_media_da_duracao": 0.996,
+  "trechos": {
+    "1o quarto": {
+      "notas": 483,
+      "no_beat_%": 34.0,
+      "inicio_compasso_%": 11.2,
+      "fora_de_1/4_%": 13.7
+    },
+    "2o quarto": {
+      "notas": 482,
+      "no_beat_%": 31.3,
+      "inicio_compasso_%": 8.5,
+      "fora_de_1/4_%": 12.2
+    },
+    "3o quarto": {
+      "notas": 511,
+      "no_beat_%": 32.3,
+      "inicio_compasso_%": 8.4,
+      "fora_de_1/4_%": 12.1
+    },
+    "4o quarto": {
+      "notas": 531,
+      "no_beat_%": 32.2,
+      "inicio_compasso_%": 6.0,
+      "fora_de_1/4_%": 12.1
+    },
+    "TOTAL": {
+      "notas": 2007,
+      "no_beat_%": 32.4,
+      "inicio_compasso_%": 8.5,
+      "fora_de_1/4_%": 12.5
+    }
+  }
+}

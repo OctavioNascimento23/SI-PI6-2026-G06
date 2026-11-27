@@ -1,0 +1,209 @@
+{
+  "modelo": "transformer",
+  "vocabulario_tamanho": 140,
+  "historico": [
+    {
+      "epoca": 1,
+      "loss_treino": 1.4033333615892023,
+      "loss_val": 1.2824077967371659,
+      "perplexidade_val": 3.6053101370706484,
+      "acuracia_val": 0.6065281994591608,
+      "top5_val": 0.9064198925464358,
+      "f1_macro_val": 0.3012813627719879,
+      "tempo_s": 1065.3853044509888
+    },
+    {
+      "epoca": 2,
+      "loss_treino": 1.32189163309415,
+      "loss_val": 1.2495704109271777,
+      "perplexidade_val": 3.4888438662865617,
+      "acuracia_val": 0.6154439245644533,
+      "top5_val": 0.9086424885343065,
+      "f1_macro_val": 0.32050633430480957,
+      "tempo_s": 1062.1284174919128
+    },
+    {
+      "epoca": 3,
+      "loss_treino": 1.300813733489943,
+      "loss_val": 1.243881675559109,
+      "perplexidade_val": 3.4690531023719537,
+      "acuracia_val": 0.6194026253199615,
+      "top5_val": 0.9095951391188091,
+      "f1_macro_val": 0.3277135193347931,
+      "tempo_s": 1053.9390268325806
+    },
+    {
+      "epoca": 4,
+      "loss_treino": 1.2819908066881323,
+      "loss_val": 1.2309509851910903,
+      "perplexidade_val": 3.4244846224380496,
+      "acuracia_val": 0.624659382479692,
+      "top5_val": 0.9107525226529288,
+      "f1_macro_val": 0.3331585228443146,
+      "tempo_s": 1052.4687402248383
+    },
+    {
+      "epoca": 5,
+      "loss_treino": 1.2680001192830928,
+      "loss_val": 1.2215706636595773,
+      "perplexidade_val": 3.39251204656054,
+      "acuracia_val": 0.627642213081858,
+      "top5_val": 0.9121134015454332,
+      "f1_macro_val": 0.3350678086280823,
+      "tempo_s": 1051.238957643509
+    },
+    {
+      "epoca": 6,
+      "loss_treino": 1.2564593779673168,
+      "loss_val": 1.2219919777726296,
+      "perplexidade_val": 3.3939416609016573,
+      "acuracia_val": 0.62972124848675,
+      "top5_val": 0.9125824486225786,
+      "f1_macro_val": 0.34401801228523254,
+      "tempo_s": 1051.4475042819977
+    },
+    {
+      "epoca": 7,
+      "loss_treino": 1.246062576981597,
+      "loss_val": 1.2061446049790487,
+      "perplexidade_val": 3.3405805357345795,
+      "acuracia_val": 0.6322502956369723,
+      "top5_val": 0.9134371527009604,
+      "f1_macro_val": 0.34493499994277954,
+      "tempo_s": 1052.5392944812775
+    },
+    {
+      "epoca": 8,
+      "loss_treino": 1.2362714108687791,
+      "loss_val": 1.1990613904136216,
+      "perplexidade_val": 3.3170020911990177,
+      "acuracia_val": 0.6342095793568839,
+      "top5_val": 0.9141642080836395,
+      "f1_macro_val": 0.34742510318756104,
+      "tempo_s": 1053.8993773460388
+    },
+    {
+      "epoca": 9,
+      "loss_treino": 1.2274935946427061,
+      "loss_val": 1.1940222376141794,
+      "perplexidade_val": 3.3003292545922087,
+      "acuracia_val": 0.6369600964048211,
+      "top5_val": 0.9148532517356038,
+      "f1_macro_val": 0.35063421726226807,
+      "tempo_s": 1052.6237392425537
+    },
+    {
+      "epoca": 10,
+      "loss_treino": 1.2194426382467276,
+      "loss_val": 1.193482572278621,
+      "perplexidade_val": 3.298548661802894,
+      "acuracia_val": 0.6377780263437206,
+      "top5_val": 0.9152778633942082,
+      "f1_macro_val": 0.3531073033809662,
+      "tempo_s": 1053.2123231887817
+    },
+    {
+      "epoca": 11,
+      "loss_treino": 1.212259809418774,
+      "loss_val": 1.186404974361067,
+      "perplexidade_val": 3.2752852821964757,
+      "acuracia_val": 0.6391538152639317,
+      "top5_val": 0.9156830271905866,
+      "f1_macro_val": 0.35690146684646606,
+      "tempo_s": 1053.6044285297394
+    },
+    {
+      "epoca": 12,
+      "loss_treino": 1.2061539413256541,
+      "loss_val": 1.1806269437159054,
+      "perplexidade_val": 3.256415152058654,
+      "acuracia_val": 0.6407181305819047,
+      "top5_val": 0.9164044839462612,
+      "f1_macro_val": 0.3589800000190735,
+      "tempo_s": 1053.790606021881
+    },
+    {
+      "epoca": 13,
+      "loss_treino": 1.2011814477455947,
+      "loss_val": 1.1802462473489765,
+      "perplexidade_val": 3.2551756825867852,
+      "acuracia_val": 0.6413636817419816,
+      "top5_val": 0.9166219464056992,
+      "f1_macro_val": 0.3603280782699585,
+      "tempo_s": 1053.4853823184967
+    },
+    {
+      "epoca": 14,
+      "loss_treino": 1.1976266247221463,
+      "loss_val": 1.1779600558998655,
+      "perplexidade_val": 3.247742228163556,
+      "acuracia_val": 0.6419897850398322,
+      "top5_val": 0.9169883323434568,
+      "f1_macro_val": 0.36436256766319275,
+      "tempo_s": 1053.4884474277496
+    },
+    {
+      "epoca": 15,
+      "loss_treino": 1.1954795635128541,
+      "loss_val": 1.1761950506626664,
+      "perplexidade_val": 3.2420150019007576,
+      "acuracia_val": 0.6423948309703787,
+      "top5_val": 0.9171134469237784,
+      "f1_macro_val": 0.3631265461444855,
+      "tempo_s": 1053.517117023468
+    }
+  ],
+  "teste": {
+    "loss": 1.1701856084793816,
+    "perplexidade": 3.2225907231857907,
+    "acuracia": 0.6436971098213538,
+    "top5": 0.917801107525269,
+    "precisao_macro": 0.4474645256996155,
+    "recall_macro": 0.4003165364265442,
+    "f1_macro": 0.4171205163002014,
+    "tokens_avaliados": 17222361,
+    "auc_roc_ovr": 0.9821589701739395
+  },
+  "geracao": {
+    "n_notas": 98.06,
+    "alturas_distintas": 9.0,
+    "participacao_nota_dominante": 0.2588055912378666,
+    "amplitude_semitons": 16.8,
+    "intervalo_medio_semitons": 4.741248049363653,
+    "pct_repeticoes_consecutivas": 0.03244927179779968
+  },
+  "real_teste": {
+    "n_notas": 426.254,
+    "alturas_distintas": 18.842,
+    "participacao_nota_dominante": 0.23067150741332926,
+    "amplitude_semitons": 31.524,
+    "intervalo_medio_semitons": 4.8916923805633195,
+    "pct_repeticoes_consecutivas": 0.22100005856488109
+  },
+  "exemplo_tokens": [
+    "NOTE_60",
+    "DURATION_1.00",
+    "REST_0.25",
+    "NOTE_62",
+    "DURATION_0.25",
+    "REST_1.00",
+    "NOTE_60",
+    "DURATION_0.50",
+    "REST_0.50",
+    "NOTE_60",
+    "DURATION_1.00",
+    "REST_0.25",
+    "NOTE_62",
+    "DURATION_0.25",
+    "REST_1.00",
+    "NOTE_60",
+    "DURATION_0.50",
+    "REST_0.50",
+    "NOTE_60",
+    "DURATION_1.00",
+    "REST_0.25",
+    "NOTE_62",
+    "DURATION_0.25",
+    "REST_1.00"
+  ]
+}

@@ -13,11 +13,15 @@ from src.teoria_musical import (
     ESCALAS,
     PROGRESSOES_GRAUS,
     gerar_progressao_acordes,
+    resolver_progressao,
+    deslocamento_para_do,
+    transpor_tokens,
     filtrar_tokens_por_tonalidade,
     pitch_para_nome,
 )
 from src.midi_builder import construir_midi_completo, limitar_duracao, PROGRAMAS_GM
 from src.audio_renderer import renderizar
+from src.harmonia_guia import criar_guia_harmonico
 from src.modelos.markov import ModeloMarkov
 
 # Imports opcionais de Deep Learning (caso PyTorch não esteja instalado localmente)
@@ -125,6 +129,7 @@ class GeradorMusical:
         instrumento_melodia: str = "Piano Acústico",
         instrumento_acordes: str = "Piano Elétrico",
         caminho_saida_midi: Optional[str] = None,
+        guiar_por_harmonia: bool = True,
     ) -> Dict[str, Any]:
         """
         Executa o pipeline completo de composição:
@@ -145,6 +150,15 @@ class GeradorMusical:
         )
 
         # 2. Geração da melodia pela IA
+        # Os modelos foram treinados SEM transposição e rendem melhor na região de Dó Maior / Lá Menor
+        # (contexto/009). Por isso a melodia é gerada nessa região, com os acordes levados para lá, e
+        # só depois transposta para a tonalidade escolhida.
+        desloc = deslocamento_para_do(tonalidade)
+        tonalidade_modelo = "Dó Maior"
+        acordes_modelo = [
+            dict(a, classes_pitch=[(c - desloc) % 12 for c in a["classes_pitch"]]) for a in acordes
+        ]
+
         # Estima tokens necessários (~2 notas por segundo = 4 tokens)
         num_tokens_alvo = int(duracao_seg * 2 * 2) + 8
         tokens_brutos = []
@@ -152,11 +166,8 @@ class GeradorMusical:
         if "Transformer" in tipo_modelo:
             modelo = self.carregar_transformer()
             if modelo is not None and self.vocabulario is not None:
-                tokens_brutos = modelo.gerar(
-                    token_para_id=self.token_para_id,
-                    id_para_token=self.id_para_token,
-                    num_tokens=num_tokens_alvo,
-                    temperatura=temperatura,
+                tokens_brutos = self._gerar_neural(
+                    modelo, acordes_modelo, tonalidade_modelo, num_tokens_alvo, temperatura, guiar_por_harmonia
                 )
             else:
                 tipo_modelo += " (Fallback: Markov acionado)"
@@ -165,11 +176,10 @@ class GeradorMusical:
         elif "LSTM" in tipo_modelo:
             modelo = self.carregar_lstm()
             if modelo is not None and self.vocabulario is not None:
-                tokens_brutos = modelo.gerar(
-                    token_para_id=self.token_para_id,
-                    id_para_token=self.id_para_token,
-                    num_tokens=num_tokens_alvo,
-                    temperatura=temperatura,
+                # A LSTM pode escolher durações curtas e acabar antes: gera até cobrir a duração pedida
+                tokens_brutos = self._gerar_neural(
+                    modelo, acordes_modelo, tonalidade_modelo, num_tokens_alvo * 8, temperatura, guiar_por_harmonia,
+                    beats_alvo=duracao_seg * bpm / 60.0,
                 )
             else:
                 tipo_modelo += " (Fallback: Markov acionado)"
@@ -179,7 +189,10 @@ class GeradorMusical:
             tokens_brutos = self._gerar_com_markov(num_tokens_alvo)
 
         # 3. Teoria Musical e Harmonização
-        tokens_harmonizados = filtrar_tokens_por_tonalidade(tokens_brutos, tonalidade)
+        tokens_harmonizados = filtrar_tokens_por_tonalidade(
+            transpor_tokens(filtrar_tokens_por_tonalidade(tokens_brutos, tonalidade_modelo), desloc),
+            tonalidade,
+        )
         tokens_finais = limitar_duracao(tokens_harmonizados, bpm, duracao_seg)
 
         # 4. Construção do MIDI Multifaixa
@@ -214,6 +227,7 @@ class GeradorMusical:
             "caminho_midi": caminho_mid,
             "caminho_wav": caminho_wav,
             "acordes": acordes,
+            "aviso_progressao": resolver_progressao(tonalidade, estilo_progressao)[3],
             "tokens": tokens_finais,
             "num_notas": len(notas_melodia),
             "num_acordes": len(acordes),
@@ -224,6 +238,34 @@ class GeradorMusical:
             "nota_grave": nota_grave,
             "nota_aguda": nota_aguda,
         }
+
+    def _gerar_neural(
+        self,
+        modelo: Any,
+        acordes: List[Dict],
+        tonalidade: str,
+        num_tokens: int,
+        temperatura: float,
+        guiar_por_harmonia: bool,
+        beats_alvo: Optional[float] = None,
+    ) -> List[str]:
+        # Os IDs só fazem sentido com o vocabulário usado no treino do checkpoint
+        vocab = getattr(modelo, "vocabulario", None) or self.vocabulario
+        token_para_id = vocab["token_para_id"]
+        id_para_token = vocab["id_para_token"]
+        # Só o Transformer sai do tempo da base (medido em contexto/008); a LSTM fica sem ajuste de ritmo
+        peso_ritmo = 3.0 if type(modelo).__name__ == "MusicTransformer" else 0.0
+        guia = (criar_guia_harmonico(token_para_id, acordes, tonalidade, peso_ritmo=peso_ritmo)
+                if guiar_por_harmonia else None)
+        extra = {"beats_alvo": beats_alvo} if beats_alvo is not None else {}
+        return modelo.gerar(
+            token_para_id=token_para_id,
+            id_para_token=id_para_token,
+            num_tokens=num_tokens,
+            temperatura=temperatura,
+            ajustar_logits=guia,
+            **extra,
+        )
 
     def _gerar_com_markov(self, num_tokens: int) -> List[str]:
         modelo = self.carregar_markov()

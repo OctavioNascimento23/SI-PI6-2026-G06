@@ -64,6 +64,12 @@ def limitar_duracao(tokens: List[str], bpm: int, duracao_max_seg: float) -> List
     return resultado
 
 
+def _beats(valor: str) -> float:
+    """O vocabulário grava 0.125 como '0.12' (formato .2f); aqui volta ao valor real."""
+    v = float(valor)
+    return 0.125 if v == 0.12 else v
+
+
 def construir_midi_completo(
     tokens_melodia: List[str],
     acordes_base: List[Dict],
@@ -73,6 +79,7 @@ def construir_midi_completo(
     programa_acordes: int = 4,
     volume_melodia: int = 95,
     volume_acordes: int = 70,
+    grade_beats: float = 0.125,
 ) -> str:
     """
     Gera um arquivo MIDI multifaixa completo com Faixa de Harmonia (Acordes) e Faixa de Melodia.
@@ -116,7 +123,15 @@ def construir_midi_completo(
         name="Melodia Principal"
     )
 
-    cursor = 0.0
+    # O tempo é acumulado em BEATS (sem erro) e só depois encaixado na grade rítmica da faixa de
+    # acordes. Sem isso, cada duração arredondada no treino desloca as notas seguintes, e a melodia
+    # vai saindo do tempo da base.
+    def encaixar(beats: float) -> float:
+        if grade_beats and grade_beats > 0:
+            return int(beats / grade_beats + 0.5) * grade_beats
+        return beats
+
+    cursor_beats = 0.0
     pitch_pendente: Optional[int] = None
     notas_melodia = []
 
@@ -133,16 +148,16 @@ def construir_midi_completo(
 
         elif tok.startswith("DURATION_") and pitch_pendente is not None:
             try:
-                dur_beats = float(tok.split("_")[1])
-                dur_seg = dur_beats * seg_por_beat
-                nota = pretty_midi.Note(
-                    velocity=volume_melodia,
-                    pitch=pitch_pendente,
-                    start=cursor,
-                    end=cursor + dur_seg,
-                )
-                notas_melodia.append(nota)
-                cursor += dur_seg
+                dur_beats = _beats(tok.split("_")[1])
+                ini_b, fim_b = encaixar(cursor_beats), encaixar(cursor_beats + dur_beats)
+                if fim_b > ini_b:  # notas menores que a grade são descartadas
+                    notas_melodia.append(pretty_midi.Note(
+                        velocity=volume_melodia,
+                        pitch=pitch_pendente,
+                        start=ini_b * seg_por_beat,
+                        end=fim_b * seg_por_beat,
+                    ))
+                cursor_beats += dur_beats
             except ValueError:
                 pass
             pitch_pendente = None
@@ -150,8 +165,7 @@ def construir_midi_completo(
 
         elif tok.startswith("REST_"):
             try:
-                dur_beats = float(tok.split("_")[1])
-                cursor += dur_beats * seg_por_beat
+                cursor_beats += _beats(tok.split("_")[1])
             except ValueError:
                 pass
             pitch_pendente = None

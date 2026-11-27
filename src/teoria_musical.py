@@ -93,6 +93,37 @@ def obter_notas_acorde(tonica_pitch: int, qualidade: str, oitava: int = 3) -> Li
     return [baixo, raiz_media + 4, raiz_media + 7, raiz_media + 12]
 
 
+def resolver_progressao(tonalidade: str, estilo_progressao: str):
+    """
+    Resolve a progressão escolhida para a tonalidade escolhida.
+    Retorna (graus, mapa_de_graus, tônica usada nos acordes, aviso ou None).
+
+    Os graus de uma progressão só têm sentido no modo para o qual foram escritos: 'i - VI - III - VII'
+    é menor, 'I - V - vi - IV' é maior. Quando o modo da progressão difere do da tonalidade, ela é
+    tocada na tonalidade RELATIVA (mesmas notas da escala, então a melodia continua combinando).
+    Antes, os graus sem correspondência caíam todos na tônica (ex.: Dó Maior + 'Sentimental Menor'
+    tocava Dó, Dó, Dó, Dó enquanto a tela mostrava i - VI - III - VII).
+    """
+    tipo = TIPO_ESCALA.get(tonalidade, "maior")
+    tonica = TONICAS.get(tonalidade, 0)
+
+    graus = PROGRESSOES_GRAUS.get(estilo_progressao)
+    if not graus:
+        graus = ["I", "V", "vi", "IV"] if tipo == "maior" else ["i", "VI", "III", "VII"]
+        modo = tipo
+    else:
+        so_menor = any(g in MAPA_GRAUS_MENOR and g not in MAPA_GRAUS_MAIOR for g in graus)
+        modo = "menor" if so_menor else "maior"
+
+    aviso = None
+    if modo != tipo:
+        tonica = (tonica + (9 if modo == "menor" else 3)) % 12
+        aviso = (f"A progressão escolhida é {modo}; em {tonalidade} ela é tocada na tonalidade relativa "
+                 f"({NOMES_NOTAS[tonica]} {modo}), com as mesmas notas da escala.")
+    mapa = MAPA_GRAUS_MENOR if modo == "menor" else MAPA_GRAUS_MAIOR
+    return graus, mapa, tonica, aviso
+
+
 def gerar_progressao_acordes(tonalidade: str, estilo_progressao: str, duracao_seg: float, bpm: int) -> List[Dict]:
     """
     Gera a progressão de acordes estruturada compasso a compasso com tempos de início, fim e notas.
@@ -103,13 +134,7 @@ def gerar_progressao_acordes(tonalidade: str, estilo_progressao: str, duracao_se
     num_compassos = max(1, int(duracao_seg / seg_por_compasso) + 1)
 
     tipo = TIPO_ESCALA.get(tonalidade, "maior")
-    tonica_base = TONICAS.get(tonalidade, 0)
-    mapa = MAPA_GRAUS_MAIOR if tipo == "maior" else MAPA_GRAUS_MENOR
-
-    # Escolhe a progressão padrão se o estilo não for compatível com o tipo de escala
-    lista_graus = PROGRESSOES_GRAUS.get(estilo_progressao)
-    if not lista_graus:
-        lista_graus = ["I", "V", "vi", "IV"] if tipo == "maior" else ["i", "VI", "III", "VII"]
+    lista_graus, mapa, tonica_base, _ = resolver_progressao(tonalidade, estilo_progressao)
 
     acordes_gerados = []
     tempo_cursor = 0.0
@@ -168,6 +193,31 @@ def transpor_pitch(pitch: int, tonalidade: str) -> int:
         if (pitch - delta) % 12 in classes:
             return pitch - delta
     return pitch
+
+
+def deslocamento_para_do(tonalidade: str) -> int:
+    """
+    Semitons (de -6 a +5) que levam o Dó Maior / Lá Menor à tonalidade pedida.
+    Tonalidades menores usam a tônica da relativa maior (mesmas notas da escala).
+    """
+    tonica = TONICAS.get(tonalidade, 0)
+    if TIPO_ESCALA.get(tonalidade, "maior") == "menor":
+        tonica = (tonica + 3) % 12
+    return ((tonica + 6) % 12) - 6
+
+
+def transpor_tokens(tokens: List[str], semitons: int) -> List[str]:
+    """Transpõe todos os tokens NOTE_x por `semitons`, mantendo o pitch MIDI entre 0 e 127."""
+    if semitons == 0:
+        return list(tokens)
+    resultado = []
+    for tok in tokens:
+        if tok.startswith("NOTE_"):
+            p = max(0, min(127, int(tok.split("_")[1]) + semitons))
+            resultado.append(f"NOTE_{p}")
+        else:
+            resultado.append(tok)
+    return resultado
 
 
 def filtrar_tokens_por_tonalidade(tokens: List[str], tonalidade: str) -> List[str]:
