@@ -23,3 +23,5 @@ Thumbs.db
 # Skills de agentes (instaladas via npx skills)
 .agents/
 skills-lock.json
+
+contexto/
