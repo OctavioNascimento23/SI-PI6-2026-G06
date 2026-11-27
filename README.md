@@ -6,13 +6,17 @@ Repositório oficial do **Projeto Integrador VI (PI VI)** do curso de **Sistemas
 
 ## 🎵 Visão Geral do Projeto
 
-O objetivo principal deste projeto é desenvolver uma aplicação inteligente capaz de compor e gerar automaticamente **músicas autorais em formato MIDI (.mid)** a partir de parâmetros fornecidos pelo usuário, tais como:
-- **Tonalidade** (ex.: Dó Maior, Lá Menor, Sol Maior, etc.)
-- **Andamento / BPM** (ex.: 60 a 180 BPM)
-- **Duração** da peça musical (em segundos/compassos)
-- **Base Harmônica** (Geração automática de progressão de acordes que serve de guia e acompanhamento para a linha melódica principal)
+O projeto é uma aplicação web (Streamlit) que compõe **músicas autorais em formato MIDI (.mid)** a partir de parâmetros escolhidos pelo usuário:
+- **Tonalidade / escala** (ex.: Dó Maior, Lá Menor, Sol Maior)
+- **Progressão de acordes** (ex.: Pop / Hits I - V - vi - IV)
+- **Andamento (BPM)**: 60 a 180
+- **Duração** da peça, em segundos
+- **Motor de IA** da melodia: Transformer, LSTM ou Cadeia de Markov
+- **Criatividade** (temperatura de amostragem) e **instrumentos** de melodia e acordes
 
-O projeto evoluiu a partir de uma **Prova de Conceito (POC)** probabilística funcional (Cadeia de Markov de 2ª ordem) integrada a uma interface web interativa (Streamlit) e agora avança para a fase de **Deep Learning** (Redes Neurais / Transformers) treinados no dataset musical **LMD-full (Lakh MIDI Dataset)** utilizando aceleração por GPU no **Google Colab**.
+O resultado é uma melodia alinhada a uma faixa de acordes, com player de áudio, piano roll com os acordes e botão para baixar o MIDI.
+
+O projeto começou como uma Prova de Conceito com Cadeia de Markov de 2ª ordem e evoluiu para modelos de Deep Learning (Transformer e LSTM, em PyTorch) treinados no dataset **LMD-full (Lakh MIDI Dataset)** com GPU no **Google Colab**.
 
 ---
 
@@ -21,24 +25,23 @@ O projeto evoluiu a partir de uma **Prova de Conceito (POC)** probabilística fu
 ```mermaid
 flowchart TD
     subgraph Pipeline_de_Dados["1. Pipeline de Dados (LMD-full)"]
-        A[Arquivos MIDI Brutos\n~176k arquivos] --> B[Validação e Limpeza\nfiltros de notas, duração, integridade]
-        B --> C[Extração Melódica e Harmônica\nfaixa monofônica + acordes]
-        C --> D[Tokenização por Eventos\nNOTE, DURATION, REST, CHORD]
+        A[Arquivos MIDI Brutos] --> B[Validação e Limpeza]
+        B --> C[Extração de Melodias]
+        C --> D[Tokenização por Eventos\nNOTE, DURATION, REST]
         D --> E[Divisão do Dataset\n80% Treino / 10% Validação / 10% Teste]
     end
 
-    subgraph Treinamento_Colab["2. Treinamento na Nuvem (Google Colab GPU)"]
-        E --> F[Google Drive / Dataset Zipado]
-        F --> G[Treinamento do Modelo de IA\nTransformer Autoregressivo / LSTM]
-        G --> H[Checkpoints & Modelo Treinado .pt/.h5]
+    subgraph Treinamento["2. Treinamento (Google Colab GPU)"]
+        E --> G[Treino do Transformer e da LSTM]
+        G --> H[Checkpoints em modelos/]
     end
 
-    subgraph Aplicacao["3. Aplicação & Inferência (Streamlit / API)"]
-        I[Entrada do Usuário\nTom, BPM, Duração, Estilo] --> J[Geração de Progressão de Acordes\n(Base Harmônica)]
-        J --> K[Inferência Neural da Melodia\n(Condicionada à Harmonia)]
-        K --> L[Módulo MIDI Builder\nFaixa 1: Acordes | Faixa 2: Melodia]
-        L --> M[Exportação MIDI .mid & Renderização de Áudio .wav]
-        M --> N[Interface Web Interativa Streamlit]
+    subgraph Aplicacao["3. Aplicação (Streamlit)"]
+        I[Entrada do usuário\nTom, progressão, BPM, duração, motor] --> J[Progressão de acordes\nbase harmônica]
+        J --> K[Melodia gerada pela IA\ncom guia harmônico e de ritmo]
+        K --> L[Transposição para a tonalidade escolhida]
+        L --> M[MIDI multifaixa\nacordes + melodia]
+        M --> N[Áudio WAV, piano roll e download .mid]
     end
 
     H --> K
@@ -46,80 +49,56 @@ flowchart TD
 
 ---
 
-## 🎼 Geração de Progressão de Acordes + Melodia (Arquitetura Harmônica)
+## 🎼 Harmonia + Melodia
 
-Para elevar a qualidade musical das gerações, o sistema adota uma abordagem de **dois níveis (Harmonia Base + Melodia Condicionada)**:
+A geração acontece em dois níveis:
 
-1. **Geração / Seleção da Progressão Harmônica:**
-   - O sistema gera ou seleciona progressões de acordes tonais (ex.: $I - V - vi - IV$ ou $ii - V - I$) no tom escolhido pelo usuário.
-   - Os acordes são representados por compassos e graus harmônicos (ex.: `CHORD_C_MAJ`, `CHORD_G_MAJ`, `CHORD_A_MIN`, `CHORD_F_MAJ`).
+1. **Base harmônica:** [`src/teoria_musical.py`](src/teoria_musical.py) monta a progressão de acordes no tom escolhido, um acorde por compasso (4/4).
 
-2. **Geração Melódica Condicionada:**
-   - A rede neural preditiva recebe os tokens do acorde atual como contexto e seleciona notas que respeitam as notas da tríade/tétrade nos tempos fortes, permitindo tensões e notas de passagem nos tempos fracos.
+2. **Melodia pela IA, guiada pela harmonia:** os modelos não recebem os acordes como entrada. Eles geram a sequência de tokens e, a cada passo, [`src/harmonia_guia.py`](src/harmonia_guia.py) ajusta as probabilidades (sem retreinar o modelo):
+   - proíbe notas fora da escala e fora da tessitura da melodia;
+   - favorece as notas do acorde do compasso, mais forte nos tempos fortes;
+   - guia de ritmo: favorece durações que terminam no beat, para a melodia não sair do tempo da base (peso 3,0 no Transformer e 1,0 na LSTM).
 
-3. **Reconstrução MIDI Multifaixa:**
-   - **Track 1 (Acompanhamento):** Acordes sustentados ou arpejos de piano/base.
-   - **Track 2 (Melodia Principal):** Linha de solo/melodia monofônica sincronizada no mesmo BPM e compasso.
+   O guia pode ser desligado na barra lateral ("Guiar melodia pela harmonia").
+
+3. **Geração em Dó Maior e transposição:** os modelos foram treinados sem transposição e rendem melhor na região de Dó Maior / Lá Menor. Por isso a melodia é gerada ali e depois transposta para a tonalidade escolhida.
+
+4. **MIDI multifaixa:** [`src/midi_builder.py`](src/midi_builder.py) escreve uma faixa de acordes e uma de melodia, no mesmo BPM.
+
+5. **Áudio:** [`src/audio_renderer.py`](src/audio_renderer.py) usa o FluidSynth, se ele e um soundfont estiverem instalados. Caso contrário, usa um sintetizador próprio (somas de harmônicos com envelope ADSR), então o app funciona sem instalação extra.
 
 ---
 
-## 🚀 Status do Projeto e Sprints
+## 🤖 Modelos de IA
 
-| Sprint / Etapa | Descrição | Status |
+| Motor | Arquivo | Observações |
+| :--- | :--- | :--- |
+| **Transformer** | [`src/modelos/transformer_model.py`](src/modelos/transformer_model.py) | Autoregressivo (PyTorch). Atenção global captura motivos e estrutura de longo alcance. |
+| **LSTM** | [`src/modelos/lstm_model.py`](src/modelos/lstm_model.py) | Stacked LSTM (4 camadas, 512 unidades ocultas). Na geração usa penalidade de repetição e viés de duração para evitar notas repetidas e ritmo uniforme. |
+| **Cadeia de Markov** | [`src/modelos/markov.py`](src/modelos/markov.py) | 2ª ordem, probabilística. Serve de linha de base e de fallback quando um modelo neural não está disponível. |
+
+Métricas no conjunto de teste (de [`relatorios/tabela_comparativa.csv`](relatorios/tabela_comparativa.csv)), medidas sobre o modelo treinado, sem o guia de geração:
+
+| Modelo | Perplexidade | Acurácia | Top-5 | F1 macro |
+| :--- | :---: | :---: | :---: | :---: |
+| Transformer | 3,22 | 64,4% | 91,8% | 0,417 |
+| LSTM | 3,24 | 62,7% | 91,8% | 0,398 |
+
+Os pesos ficam em `modelos/` (`modelo_transformer.pt`, `modelo_lstm.pt`, `markov_modelo.pkl` e `vocabulario.json`) e estão versionados, então o app roda logo após o clone.
+
+---
+
+## 🚀 Status do Projeto
+
+| Etapa | Descrição | Status |
 | :--- | :--- | :---: |
-| **Sprint 1: Pipeline de Dados** | Extração, validação, tokenização e split do LMD-full | ✅ Concluído |
-| **POC (Markov 2ª Ordem)** | Prova de conceito funcional com interface Streamlit, teoria musical e exportador MIDI | ✅ Concluído |
-| **Sprint 2: Treinamento Neural** | Modelagem (Transformer / LSTM) e treinamento no Google Colab com GPU | 🔄 Em Andamento |
-| **Sprint 3: Harmonia & Multifaixa** | Integração do gerador de acordes com a melodia condicionada | 📋 Planejado |
-| **Sprint 4: Interface & Áudio** | Aperfeiçoamento do front-end com player multimídia e visualização de partitura/piano roll | 📋 Planejado |
-| **Sprint 5: Avaliação & Bancada** | Métricas musicais objetivas, testes de validação e documentação final | 📋 Planejado |
-
----
-
-## 🤖 Modelos de IA Recomendados
-
-Conforme diretriz pedagógica de utilizar arquiteturas estabelecidas e ajustá-las para os dados do projeto:
-
-1. **Transformer Autoregressivo (Recomendado — Estilo GPT-2 / Music Transformer):**
-   - **Base:** `GPT2LMHeadModel` da biblioteca `transformers` (Hugging Face) configurado para vocabulário musical ou implementação de Music Transformer.
-   - **Vantagens:** Atenção global (Self-Attention) captura estruturas rítmicas e motivos melódicos de longo alcance com alta coerência musical.
-   - **Treinamento:** Rápido e estável em GPU T4 no Google Colab.
-
-2. **Stacked LSTM com Embedding de Acorde (Estilo Google Magenta Melody RNN):**
-   - **Base:** Rede Recorrente de 2 a 3 camadas LSTM (ex.: 256–512 unidades) com Dropout e camada de projeção Linear.
-   - **Vantagens:** Simples de depurar, baixo consumo de memória, excelente para continuidade sequencial nota-a-nota.
-
----
-
-## ☁️ Guia de Treinamento no Google Colab (Passo a Passo)
-
-Como o treinamento de modelos neurais em larga escala exige aceleração computacional por GPU:
-
-1. **Compactar os dados tokenizados:**
-   ```bash
-   # Compactar os dados processados para upload
-   tar -czvf dados_treino.tar.gz dados_processados/treino dados_processados/validacao dados_processados/sequencias/vocabulario.json
-   ```
-
-2. **Configurar o Google Colab:**
-   - Criar um novo notebook no [Google Colab](https://colab.research.google.com).
-   - Alterar o ambiente de execução para GPU: **Ambiente de Execução > Alterar tipo de ambiente de execução > Acelerador de hardware: T4 GPU**.
-
-3. **Montar o Google Drive e Carregar os Dados:**
-   ```python
-   from google.colab import drive
-   drive.mount('/content/drive')
-   
-   # Descompactar os dados no ambiente do Colab
-   !tar -xzvf /content/drive/MyDrive/SI-PI6-2026-G06/dados_treino.tar.gz -C /content/
-   ```
-
-4. **Executar o Treinamento com PyTorch/TensorFlow:**
-   - Instalar dependências: `!pip install transformers torch pretty_midi pyyaml tqdm`
-   - O treinamento salvará os pesos periódicos (`checkpoints/modelo_epoch_X.pt`) diretamente no Google Drive.
-
-5. **Exportação para a Aplicação Local:**
-   - Baixar o arquivo de pesos treinado (`.pt` ou `.keras`) e colocá-lo na pasta `modelos/` do repositório local para inferência na aplicação Streamlit.
+| **Pipeline de dados** | Extração, validação, tokenização e divisão do LMD-full | ✅ Concluído |
+| **POC (Markov)** | Prova de conceito com Streamlit, teoria musical e exportador MIDI | ✅ Concluído |
+| **Treinamento neural** | Transformer e LSTM treinados no Google Colab | ✅ Concluído |
+| **Harmonia e multifaixa** | Progressão de acordes, guia harmônico e MIDI multifaixa | ✅ Concluído |
+| **Interface e áudio** | Player, piano roll com acordes e download do MIDI | ✅ Concluído |
+| **Avaliação** | Métricas objetivas em `scripts/` e `relatorios/` | 🔄 Parcial: avaliação de escuta manual ainda pendente |
 
 ---
 
@@ -127,32 +106,33 @@ Como o treinamento de modelos neurais em larga escala exige aceleração computa
 
 ```
 SI-PI6-2026-G06/
-├── arquivos_brutos/          # Dataset original LMD-full e índices
+├── app.py                    # Interface Streamlit
+├── src/
+│   ├── gerador.py            # Orquestra a composição (acordes + melodia + MIDI + áudio)
+│   ├── teoria_musical.py     # Escalas, progressões, transposição
+│   ├── harmonia_guia.py      # Guia harmônico/rítmico e métricas da melodia
+│   ├── midi_builder.py       # Tokens -> arquivo MIDI multifaixa
+│   ├── audio_renderer.py     # MIDI -> WAV (FluidSynth ou sintetizador próprio)
+│   ├── piano_roll.py         # Visualização da melodia e dos acordes
+│   └── modelos/              # Markov, LSTM e Transformer
+├── modelos/                  # Pesos treinados (.pt, .pkl) e vocabulário
+├── scripts/                  # Pipeline de dados (00 a 05), treino e avaliação
+├── notebooks/                # Notebook de treino no Google Colab
 ├── configuracao/
-│   └── pipeline.yaml         # Parâmetros centrais do pipeline e filtros
-├── dados_processados/        # MIDIs válidos, sequências e splits de treino
-│   ├── treino/
-│   ├── validacao/
-│   ├── teste/
-│   └── sequencias/           # Vocabulário e tokens JSON
-├── modelos/                  # Modelos treinados (.pkl, .pt, .pth)
-├── poc/                      # Prova de Conceito funcional (Markov + Streamlit)
-│   ├── app.py                # Interface gráfica Streamlit
-│   ├── markov.py             # Implementação do modelo de Markov
-│   ├── teoria_musical.py     # Regras de harmonia, escalas e transposição
-│   ├── midi_builder.py       # Conversor de tokens para arquivo MIDI
-│   ├── audio_renderer.py     # Renderizador de áudio WAV via FluidSynth
-│   └── treinar_markov.py     # Script de treinamento do modelo da POC
-├── relatorios/               # Relatórios de limpeza e inventário do dataset
-├── scripts/                  # Scripts modulares do pipeline de dados (00 a 05)
-├── Documentação_PI_VI_G06.docx # Documento de especificação acadêmica
-├── requirements.txt          # Dependências do projeto
+│   └── pipeline.yaml         # Parâmetros do pipeline e filtros
+├── arquivos_brutos/          # Dataset original LMD-full (não versionado)
+├── dados_processados/        # MIDIs válidos, sequências e splits (não versionado)
+├── relatorios/               # Métricas, históricos de treino e relatórios do dataset
+├── testes/escuta_manual/     # MIDIs de referência para escuta
+├── documentacao/             # Documentos acadêmicos do projeto
+├── assets/, .streamlit/      # Estilo e configuração da interface
+├── requirements.txt          # Dependências
 └── README.md                 # Esta documentação
 ```
 
 ---
 
-## 🛠️ Como Executar a POC Localmente
+## 🛠️ Como Executar o App Localmente
 
 1. **Criar e ativar o ambiente virtual Python:**
    ```bash
@@ -165,19 +145,45 @@ SI-PI6-2026-G06/
 
 2. **Instalar as dependências:**
    ```bash
-   pip install -r poc/requirements_poc.txt
+   pip install -r requirements.txt
    ```
 
-3. **Treinar o modelo da POC (se necessário):**
+3. **Iniciar a aplicação:**
    ```bash
-   python poc/treinar_markov.py
-   ```
-
-4. **Iniciar a aplicação web:**
-   ```bash
-   streamlit run poc/app.py
+   streamlit run app.py
    ```
    Acesse `http://localhost:8501` no navegador.
+
+   Os modelos já estão em `modelos/`. Sem o PyTorch, ou sem algum dos arquivos `.pt`, o app usa a Cadeia de Markov no lugar.
+
+**Opcional:** instale o [FluidSynth](https://www.fluidsynth.org) e um soundfont (`.sf2`) para um áudio com timbres de instrumentos reais.
+
+---
+
+## 🔁 Reproduzindo o Pipeline e o Treino
+
+Só é necessário se quiser refazer os dados ou treinar novamente. Exige o dataset LMD-full em `arquivos_brutos/`.
+
+```bash
+python scripts/00_verificar_dataset.py
+python scripts/01_inventariar_dataset.py
+python scripts/02_validar_midis.py
+python scripts/03_extrair_melodias.py
+python scripts/04_tokenizar.py
+python scripts/05_dividir_dataset.py
+
+python scripts/treinar_markov.py
+python scripts/treinar_neural.py --modelo transformer --epochs 15 --batch_size 32
+python scripts/treinar_neural.py --modelo lstm --epochs 20 --batch_size 32
+```
+
+**Treino no Google Colab:** use [`notebooks/treinamento_google_colab.ipynb`](notebooks/treinamento_google_colab.ipynb) com GPU (**Ambiente de execução > Alterar tipo > T4 GPU**). Ao final, extraia o `.zip` baixado na raiz do projeto (cria `modelos/` e `relatorios/`) e reinicie o `streamlit run`. Em treinos longos, `scripts/manter_acordado.bat` evita a suspensão do computador.
+
+**Avaliação da geração:**
+```bash
+python scripts/avaliar_geracao.py --modelo lstm --n 20     # aderência da melodia aos acordes
+python scripts/medir_tempo.py --modelo lstm --n 20         # alinhamento rítmico com a grade dos acordes
+```
 
 ---
 
