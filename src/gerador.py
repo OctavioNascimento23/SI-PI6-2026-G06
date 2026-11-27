@@ -253,8 +253,8 @@ class GeradorMusical:
         vocab = getattr(modelo, "vocabulario", None) or self.vocabulario
         token_para_id = vocab["token_para_id"]
         id_para_token = vocab["id_para_token"]
-        # Só o Transformer sai do tempo da base (medido em contexto/008); a LSTM fica sem ajuste de ritmo
-        peso_ritmo = 3.0 if type(modelo).__name__ == "MusicTransformer" else 0.0
+        # O Transformer precisa de guia de ritmo forte (contexto/008); a LSTM, mais fraco (contexto/013)
+        peso_ritmo = 3.0 if type(modelo).__name__ == "MusicTransformer" else 1.0
         guia = (criar_guia_harmonico(token_para_id, acordes, tonalidade, peso_ritmo=peso_ritmo)
                 if guiar_por_harmonia else None)
         extra = {"beats_alvo": beats_alvo} if beats_alvo is not None else {}

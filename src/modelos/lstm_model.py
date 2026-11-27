@@ -10,6 +10,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
+VIES_DURACAO_PADRAO: Dict[str, float] = {
+    "DURATION_0.25": -0.8,
+    "DURATION_1.00": 0.2,
+}
+
+
 class MelodyLSTM(nn.Module):
     def __init__(
         self,
@@ -60,6 +66,7 @@ class MelodyLSTM(nn.Module):
         ajustar_logits: Optional[Callable] = None,
         beats_alvo: Optional[float] = None,
         penalidade_repeticao: float = 1.0,
+        vies_duracao: Optional[Dict[str, float]] = None,
     ) -> List[str]:
         """
         Gera sequências de tokens musicais utilizando amostragem com temperatura e Top-K.
@@ -74,6 +81,10 @@ class MelodyLSTM(nn.Module):
         # Durações de 1/8 de beat (gravadas como "0.12"): sem penalidade o modelo escolhe sequências
         # delas e a melodia termina muito antes da duração pedida (mesma proteção do Transformer)
         id_dur_min = token_para_id.get("DURATION_0.12")
+        # A LSTM escolhe 1/4 de beat em ~70% das notas (ritmo uniforme e corrido); o viés espalha as durações
+        if vies_duracao is None:
+            vies_duracao = VIES_DURACAO_PADRAO
+        ids_vies = {token_para_id[t]: v for t, v in vies_duracao.items() if t in token_para_id}
 
         if tokens_iniciais:
             ids_historico = [token_para_id.get(t, start_id) for t in tokens_iniciais]
@@ -97,6 +108,9 @@ class MelodyLSTM(nn.Module):
             last_logits = logits[:, -1, :].clone()
             if id_dur_min is not None:
                 last_logits[0, id_dur_min] -= 2.0
+            if tokens_gerados and tokens_gerados[-1].startswith("NOTE_"):
+                for idx_dur, v in ids_vies.items():
+                    last_logits[0, idx_dur] += v
             # Sem isso a LSTM trava na mesma nota; penaliza só notas recentes (durações ficam intactas)
             if penalidade_repeticao > 0:
                 for t in tokens_gerados[-8:]:
